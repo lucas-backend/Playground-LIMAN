@@ -1,5 +1,4 @@
 import {
-  createContext,
   useState,
   type Dispatch,
   type ReactNode,
@@ -11,6 +10,9 @@ import {
   type QuizData,
   type QuestionResponse,
 } from "./types";
+
+import { QuizContext } from "./hook";
+import { isAnswerCompleted } from "./utils";
 
 export interface QuizContextValueType {
   quizData: QuizData;
@@ -24,8 +26,6 @@ export interface QuizContextValueType {
     answer: QuestionResponse["userAnswer"],
   ) => void;
 }
-
-const QuizContext = createContext<QuizContextValueType | null>(null);
 
 interface Props {
   quizData: QuizData;
@@ -55,7 +55,7 @@ export function QuizProvider({ quizData, children }: Props) {
         questionId,
         type,
         userAnswer: answer,
-        isCompleted: answer !== null && answer !== "",
+        isCompleted: isAnswerCompleted(answer),
         updatedAt: new Date().toISOString(),
       };
 

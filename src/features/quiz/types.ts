@@ -57,7 +57,13 @@ export interface QuizData {
 }
 
 // Tipe untuk menampung jawaban yang sedang dikerjakan
-export type UserAnswerValue = number | number[] | boolean | string | null;
+export type UserAnswerValue =
+  | number
+  | number[]
+  | boolean
+  | boolean[]
+  | string
+  | null;
 
 export interface QuestionResponse {
   questionId: number; // Relasi ke BaseQuestion.id

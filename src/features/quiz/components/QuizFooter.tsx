@@ -6,10 +6,18 @@ import XPadding from "../../../components/XPadding";
 
 interface Props {
   quizLength: number;
+  currentQuestionIndex: number;
   setQuestionIndex: Dispatch<SetStateAction<number>>;
 }
 
-export default function QuizFooter({ quizLength, setQuestionIndex }: Props) {
+export default function QuizFooter({
+  quizLength,
+  currentQuestionIndex,
+  setQuestionIndex,
+}: Props) {
+  const isFirstQuestion = currentQuestionIndex === 0;
+  const isLastQuestion = currentQuestionIndex === quizLength - 1;
+
   function handlePrev() {
     setQuestionIndex((prev) => Math.max(prev - 1, 0));
   }
@@ -21,11 +29,13 @@ export default function QuizFooter({ quizLength, setQuestionIndex }: Props) {
   return (
     <div className="bg-blue-500 text-white py-8 fixed bottom-0 w-full">
       <XPadding>
-        <div className="flex w-full justify-between items-center">
+        <div className="grid grid-cols-3 w-full justify-between items-center">
           {/* Tombol Sebelumnya */}
-          <button onClick={handlePrev}>
-            <ChevronLeftRoundedIcon className="w-8! h-8!" />
-            Sebelumnya
+          <button onClick={handlePrev} disabled={isFirstQuestion}>
+            <span className={`${isFirstQuestion ? "hidden" : ""}`}>
+              <ChevronLeftRoundedIcon className="w-8! h-8!" />
+              Sebelumnya
+            </span>
           </button>
 
           {/* Tombol ke Komponen Navigasi Soal */}
@@ -35,8 +45,8 @@ export default function QuizFooter({ quizLength, setQuestionIndex }: Props) {
           </button>
 
           {/* Tombol Selanjutnya */}
-          <button onClick={handleNext} className="">
-            Selanjutnya
+          <button onClick={handleNext} disabled={isLastQuestion}>
+            {isLastQuestion ? "Selesai" : "Selanjutnya"}
             <ChevronRightRoundedIcon className="w-8! h-8! order-1" />
           </button>
         </div>

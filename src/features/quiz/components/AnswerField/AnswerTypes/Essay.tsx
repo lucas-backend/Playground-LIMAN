@@ -1,3 +1,4 @@
+import { useQuizContext } from "../../../hook";
 import type { EssayQuestion } from "../../../types";
 
 import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded";
@@ -7,6 +8,10 @@ interface Props {
 }
 
 export default function Essay({ question }: Props) {
+  const { quizProgress, updateUserAnswer } = useQuizContext();
+  const savedAnswer = quizProgress.responses[question.id]?.userAnswer;
+  const essayAnswer = typeof savedAnswer === "string" ? savedAnswer : "";
+
   return (
     <div>
       <div className="">
@@ -16,6 +21,10 @@ export default function Essay({ question }: Props) {
           id={`${question.id}`}
           placeholder="Ketik di sini..."
           className="border border-black/10 p-4 w-full h-44 resize-none overflow-y-auto rounded-xl"
+          value={essayAnswer}
+          onChange={(event) =>
+            updateUserAnswer(question.id, question.type, event.target.value)
+          }
         ></textarea>
 
         {/* Field Isi Foto */}

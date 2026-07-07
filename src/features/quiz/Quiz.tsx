@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Header from "../../components/Header";
 
 import { type QuizQuestion, type QuizData } from "./types";
@@ -9,20 +9,14 @@ import { quizList } from "./data.mock";
 import AnswerField from "./components/AnswerField/AnswerField";
 import QuizFooter from "./components/QuizFooter";
 import XPadding from "../../components/XPadding";
+import { useQuizContext } from "./hook";
+import { QuizProvider } from "./QuizContext";
 
-export default function Quiz() {
-  const { id } = useParams();
+export function QuizContent() {
+  const { quizData, currentQuestionIndex, setCurrentQuestionIndex } =
+    useQuizContext();
 
-  const quiz: QuizData | null =
-    quizList.find((item) => `${item.id}` == id) ?? null;
-
-  const [questionIndex, setQuestionIndex] = useState(3);
-
-  if (!quiz) {
-    return <Navigate to={"/notfound"} />;
-  }
-
-  const question: QuizQuestion = quiz.questions[questionIndex];
+  const question: QuizQuestion = quizData.questions[currentQuestionIndex];
 
   if (!question) {
     return <Navigate to={"/notfound"} />;
@@ -31,11 +25,11 @@ export default function Quiz() {
   return (
     <div className="min-h-dvh flex flex-col">
       {/* Header */}
-      <Header title={quiz.title} />
+      <Header title={quizData.title} />
 
       {/* Body */}
       <XPadding className="text-lg">
-        <QuizIndicator quiz={quiz} questionIndex={questionIndex} />
+        <QuizIndicator quiz={quizData} questionIndex={currentQuestionIndex} />
         <div className="mt-4"></div>
         <QuestionText text={question.question} />
         <div className="mt-4"></div>
@@ -47,10 +41,28 @@ export default function Quiz() {
       {/* Footer & Control Button */}
       <div className="mt-48">
         <QuizFooter
-          setQuestionIndex={setQuestionIndex}
-          quizLength={quiz.questions.length}
+          setQuestionIndex={setCurrentQuestionIndex}
+          quizLength={quizData.questions.length}
+          currentQuestionIndex={currentQuestionIndex}
         />
       </div>
     </div>
+  );
+}
+
+export default function Quiz() {
+  const { id } = useParams();
+
+  const quiz: QuizData | null =
+    quizList.find((item) => `${item.id}` === id) ?? null;
+
+  if (!quiz) {
+    return <Navigate to={"/notfound"} />;
+  }
+
+  return (
+    <QuizProvider quizData={quiz}>
+      <QuizContent />
+    </QuizProvider>
   );
 }
