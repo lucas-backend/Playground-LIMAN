@@ -45,7 +45,7 @@ export default function Quiz() {
       </XPadding>
 
       {/* Footer & Control Button */}
-      <div className="mt-auto">
+      <div className="mt-48">
         <QuizFooter
           setQuestionIndex={setQuestionIndex}
           quizLength={quiz.questions.length}

@@ -19,7 +19,7 @@ export default function QuizFooter({ quizLength, setQuestionIndex }: Props) {
   }
 
   return (
-    <div className="bg-blue-500 text-white py-8">
+    <div className="bg-blue-500 text-white py-8 fixed bottom-0 w-full">
       <XPadding>
         <div className="flex w-full justify-between items-center">
           {/* Tombol Sebelumnya */}
@@ -29,15 +29,15 @@ export default function QuizFooter({ quizLength, setQuestionIndex }: Props) {
           </button>
 
           {/* Tombol ke Komponen Navigasi Soal */}
-          <button>
+          <button className="flex flex-col sm:flex-row justify-center items-center">
             <FormatListBulletedRoundedIcon className="w-6! h-6! mb-1 mr-1" />
-            Daftar Soal
+            <span>Daftar Soal</span>
           </button>
 
           {/* Tombol Selanjutnya */}
-          <button onClick={handleNext}>
+          <button onClick={handleNext} className="">
             Selanjutnya
-            <ChevronRightRoundedIcon className="w-8! h-8!" />
+            <ChevronRightRoundedIcon className="w-8! h-8! order-1" />
           </button>
         </div>
       </XPadding>
