@@ -4,6 +4,7 @@ interface Props {
   question: RangeValueQuestion;
 }
 
+// Fungsi untuk bikin penomoran pada opsi jawaban
 export default function RangeValue({ question }: Props) {
   const rangeVal: number[] = [];
   for (let i = question.min_val; i <= question.max_val; i++) {

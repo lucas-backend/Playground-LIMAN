@@ -4,8 +4,8 @@ import type { QuizData } from "./types";
 export const quiz1: QuizData = {
   id:1,
   title: "Minat Bakat",
-  startTime: "06/07/2026 10:00", // Nanti ganti jadi datetime
-  endTime: "06/07/2026 12:00", // Nanti ganti jadi datetime
+  startTime: "06/07/2026", // Nanti ganti jadi datetime
+  endTime: "06/07/2026", // Nanti ganti jadi datetime
   questions: [
     // Tipe Soal: Pilihan Ganda
     {

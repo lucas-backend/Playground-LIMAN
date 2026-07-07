@@ -1,10 +1,17 @@
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import Button from "../../components/Button";
 import XPadding from "../../components/XPadding";
+import { useNavigate } from "react-router-dom";
 
 const appName = "LIMAN";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  function handleFormSubmit() {
+    // Sementara langsung diarahin ke dashboard dulu
+    navigate("/dashboard");
+  }
   return (
     <div className="bg-blue-500 h-dvh text-white flex items-center pb-32">
       <XPadding>
@@ -14,7 +21,10 @@ export default function Login() {
           <h1 className="text-6xl font-bold">{appName}</h1>
         </div>
 
-        <form className="flex flex-col items-center gap-4 mt-12">
+        <form
+          className="flex flex-col items-center gap-4 mt-12"
+          onSubmit={handleFormSubmit}
+        >
           <span className="font-semibold text-2xl">Masuk</span>
           <input
             type="email"

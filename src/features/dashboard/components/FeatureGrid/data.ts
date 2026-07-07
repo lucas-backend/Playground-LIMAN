@@ -10,22 +10,22 @@ import type { featureType } from "./types";
 export const siswaFeatures: featureType[] = [
   {
     name: "Jadwal",
-    link: "#",
+    link: "/jadwal-siswa",
     icon: CalendarMonthRoundedIcon,
   },
   {
     name: "Latihan Soal",
-    link: "#",
+    link: "/latihan-soal",
     icon: BorderColorRoundedIcon,
   },
   {
     name: "Passing Grade",
-    link: "#",
+    link: "/passing-grade",
     icon: MonitorRoundedIcon,
   },
   {
     name: "Minat Bakat",
-    link: "#",
+    link: "/quiz/1",
     icon: SportsEsportsRoundedIcon,
   },
 ];

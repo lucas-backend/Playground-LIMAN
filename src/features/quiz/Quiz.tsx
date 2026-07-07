@@ -16,18 +16,14 @@ export default function Quiz() {
   const quiz: QuizData | null =
     quizList.find((item) => `${item.id}` == id) ?? null;
 
-  // Nanti bikin mekanisme kalau mau ganti soal berarti harus ganti question index.
-  const [questionIndex, setQuestionIndex] = useState(2);
+  const [questionIndex, setQuestionIndex] = useState(3);
 
-  // Note: Di bawah redirect buat sementara, nanti bikinin halaman khusus not found tentang apa. Misal Quiz Not Found atau Question Not Found in Quiz
-  // Kalau quiz ga ada, redirect ke halamam NotFound
   if (!quiz) {
     return <Navigate to={"/notfound"} />;
   }
 
   const question: QuizQuestion = quiz.questions[questionIndex];
 
-  // Kalau question ga ada, redirect ke halaman not found.
   if (!question) {
     return <Navigate to={"/notfound"} />;
   }
