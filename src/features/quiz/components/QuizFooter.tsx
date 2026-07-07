@@ -31,8 +31,14 @@ export default function QuizFooter({
       <XPadding>
         <div className="grid grid-cols-3 w-full justify-between items-center">
           {/* Tombol Sebelumnya */}
-          <button onClick={handlePrev} disabled={isFirstQuestion}>
-            <span className={`${isFirstQuestion ? "hidden" : ""}`}>
+          <button
+            onClick={handlePrev}
+            disabled={isFirstQuestion}
+            className="flex items-center justify-center"
+          >
+            <span
+              className={`flex items-center justify-center ${isFirstQuestion ? "hidden" : ""}`}
+            >
               <ChevronLeftRoundedIcon className="w-8! h-8!" />
               Sebelumnya
             </span>
@@ -45,7 +51,11 @@ export default function QuizFooter({
           </button>
 
           {/* Tombol Selanjutnya */}
-          <button onClick={handleNext} disabled={isLastQuestion}>
+          <button
+            onClick={handleNext}
+            disabled={isLastQuestion}
+            className="flex items-center justify-center"
+          >
             {isLastQuestion ? "Selesai" : "Selanjutnya"}
             <ChevronRightRoundedIcon className="w-8! h-8! order-1" />
           </button>
