@@ -8,6 +8,7 @@ import Login from "./features/login/Login";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./features/dashboard/Dashboard";
 import Quiz from "./features/quiz/Quiz";
+import Jadwal from "./features/jadwal/Jadwal";
 
 // Mendefinisikan struktur rute
 const routes: RouteObject[] = [
@@ -32,6 +33,10 @@ const routes: RouteObject[] = [
         element: <Quiz />,
       },
     ],
+  },
+  {
+    path: "/jadwal-siswa",
+    element: <Jadwal />,
   },
   {
     // Halaman 404 sederhana jika rute tidak ditemukan
