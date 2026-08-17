@@ -12,19 +12,22 @@ import type {
   JadwalTab,
 } from "../../types/jadwal";
 
-export const jadwalTabs: readonly JadwalTab[] = [
+export const jadwalPelajaranTabs: readonly JadwalTab[] = [
   {
     icon: MenuBookIcon,
     name: "Pelajaran",
+    link: "/jadwal-siswa/pelajaran",
     isActive: true,
   },
   {
     icon: AssignmentIcon,
     name: "Try Out",
+    link: "/jadwal-siswa/tryout",
   },
   {
     icon: CreateIcon,
     name: "Ujian",
+    link: "/jadwal-siswa/ujian",
   },
 ];
 

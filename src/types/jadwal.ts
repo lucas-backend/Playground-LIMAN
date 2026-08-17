@@ -4,6 +4,7 @@ export interface JadwalTab {
   icon: SvgIconComponent;
   name: string;
   isActive?: boolean;
+  link: string;
 }
 
 export interface JadwalDate {
