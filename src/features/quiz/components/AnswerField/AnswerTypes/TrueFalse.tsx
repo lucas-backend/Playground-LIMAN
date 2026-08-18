@@ -16,12 +16,12 @@ export default function TrueFalse({ question }: Props) {
       : [];
 
   return (
-    <div>
-      <table className="border border-black/20 rounded-xl overflow-hidden">
-        <thead>
+    <div className="border border-black/50 rounded-xl overflow-hidden">
+      <table className="">
+        <thead className="bg-blue-400 text-white">
           <tr>
-            <th className="p-4">Pernyataan</th>
-            <th className="p-4 text-center">
+            <th className="p-4 text-center border-r border-black/20">Pernyataan</th>
+            <th className="p-4 text-center border-r border-black/20">
               <span className="">Benar</span>
             </th>
             <th className="p-4 text-center">
@@ -35,9 +35,9 @@ export default function TrueFalse({ question }: Props) {
             const selectedValue = selectedAnswers[index];
 
             return (
-              <tr key={index}>
-                <td className="p-4 ">{item.question}</td>
-                <td className="text-center">
+              <tr key={index}  className={`border-t border-black/20`}>
+                <td className="p-4 border-r border-black/20">{item.question}</td>
+                <td className="text-center border-r border-black/20">
                   <input
                     type="radio"
                     name={`${question.id}-${item.id}`}
