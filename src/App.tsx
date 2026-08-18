@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/quiz/:id" element={<Quiz />} />
+        <Route path="/quiz/:id/*" element={<Quiz />} />
         <Route path="/jadwal-siswa/*" element={<Jadwal />} />
         <Route path="/latihan-soal" element={<LatihanSoal />} />
         <Route path="/latihan-soal/mapel/:id" element={<LatihanSoalMapel/>}/>

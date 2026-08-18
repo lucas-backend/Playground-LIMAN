@@ -3,6 +3,7 @@ import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
 import XPadding from "../../../components/XPadding";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
   quizLength: number;
@@ -17,6 +18,9 @@ export default function QuizFooter({
 }: Props) {
   const isFirstQuestion = currentQuestionIndex === 0;
   const isLastQuestion = currentQuestionIndex === quizLength - 1;
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handlePrev() {
     setQuestionIndex((prev) => Math.max(prev - 1, 0));
@@ -45,9 +49,11 @@ export default function QuizFooter({
           </button>
 
           {/* Tombol ke Komponen Navigasi Soal */}
-          <button className="flex flex-col sm:flex-row justify-center items-center">
+          <button className="flex flex-col sm:flex-row justify-center items-center pt-2 pl-6" onClick={() => {
+            navigate(location.pathname + "/navigation");
+          }}>
             <FormatListBulletedRoundedIcon className="w-6! h-6! mb-1 mr-1" />
-            <span>Daftar Soal</span>
+            {/* <span>Daftar Soal</span> */}
           </button>
 
           {/* Tombol Selanjutnya */}
