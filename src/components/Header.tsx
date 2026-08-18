@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   title: string;
+  backLink?: string;
 }
 
-export default function Header({ title }: Props) {
+export default function Header({ title, backLink }: Props) {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate(-1);
+    if (backLink) navigate(backLink);
+    else navigate(-1);
   }
 
   return (

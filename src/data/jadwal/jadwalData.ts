@@ -12,7 +12,7 @@ import type {
   JadwalTab,
 } from "../../types/jadwal";
 
-export const jadwalPelajaranTabs: readonly JadwalTab[] = [
+export const jadwalPelajaranTabs: JadwalTab[] = [
   {
     icon: MenuBookIcon,
     name: "Pelajaran",

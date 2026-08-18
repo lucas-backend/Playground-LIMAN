@@ -1,4 +1,4 @@
-import QuizItemCard from "../QuizItemCard";
+import QuizItemCard from "../../../../components/QuizItemCard";
 
 const listJadwalTryout = [
   {

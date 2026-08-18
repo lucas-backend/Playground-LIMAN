@@ -10,7 +10,7 @@ import XPadding from "../../components/XPadding";
 export default function Jadwal() {
   return (
     <div>
-      <Header title="Jadwal" />
+      <Header title="Jadwal" backLink="/dashboard" />
 
       <XPadding className="mt-4 mb-8">
         <JadwalTabs tabs={jadwalPelajaranTabs} />
@@ -18,7 +18,7 @@ export default function Jadwal() {
           <Route index element={<Navigate to="pelajaran" replace />} />
           <Route path="pelajaran" element={<JadwalTab />} />
           <Route path="tryout" element={<TryoutTab />} />
-          <Route path="ujian" element={<UjianTab />} />
+          <Route path="ujian*" element={<UjianTab />} />
         </Routes>
       </XPadding>
     </div>
