@@ -6,8 +6,8 @@ import StatusAbsen from "./components/StatusAbsen";
 import FeatureGrid from "./components/FeatureGrid/FeatureGrid";
 import { gridFeaturesSwitcher } from "./components/FeatureGrid/utils";
 
-import BottomNav from "./components/BottomNav/BottomNav";
-import { menuSwitcher } from "./components/BottomNav/utils";
+// import BottomNav from "./components/BottomNav/BottomNav";
+// import { menuSwitcher } from "./components/BottomNav/utils";
 import XPadding from "../../components/XPadding";
 import { userData } from "./data.mock";
 
@@ -23,7 +23,7 @@ export default function Dashboard() {
         <SearchBar />
       </XPadding>
       {/* Background White Negative Margin Top for Overlap with Search Button */}
-      <div className="bg-white flex-1 w-full max-w-md mx-auto -mt-6 rounded-t-[60px] pt-13 pb-32">
+      <div className="bg-white flex-1 w-full max-w-md mx-auto -mt-6 rounded-t-[60px] pt-13 pb-8">
         {/* Children*/}
         {/* Di bagian nanti ini bisa disesuaikan seusai dengan role user nya */}
 
@@ -42,7 +42,7 @@ export default function Dashboard() {
       </div>
 
       {/* Bottom Nav */}
-      <BottomNav menus={menuSwitcher(user.role)} />
+      {/* <BottomNav menus={menuSwitcher(user.role)} /> */}
     </div>
   );
 }

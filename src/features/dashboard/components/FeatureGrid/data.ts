@@ -1,7 +1,9 @@
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import MonitorRoundedIcon from "@mui/icons-material/MonitorRounded";
-import SportsEsportsRoundedIcon from "@mui/icons-material/SportsEsportsRounded";
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import LoopIcon from '@mui/icons-material/Loop';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import type { featureType } from "./types";
@@ -10,23 +12,33 @@ import type { featureType } from "./types";
 export const siswaFeatures: featureType[] = [
   {
     name: "Jadwal",
-    link: "#",
+    link: "/jadwal-siswa",
     icon: CalendarMonthRoundedIcon,
   },
   {
     name: "Latihan Soal",
-    link: "#",
+    link: "/latihan-soal",
     icon: BorderColorRoundedIcon,
   },
   {
     name: "Passing Grade",
-    link: "#",
+    link: "/passing-grade",
     icon: MonitorRoundedIcon,
   },
   {
     name: "Minat Bakat",
-    link: "#",
-    icon: SportsEsportsRoundedIcon,
+    link: "/quiz/1",
+    icon: ColorLensIcon,
+  },
+  {
+    name: "Remedial",
+    link: "/remedial",
+    icon: LoopIcon,
+  },
+  {
+    name: "Tugas",
+    link: "/tugas",
+    icon: AssignmentIcon,
   },
 ];
 

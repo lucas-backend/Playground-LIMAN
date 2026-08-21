@@ -55,3 +55,28 @@ export interface QuizData {
   endTime: string | null;
   questions: QuizQuestion[];
 }
+
+// Tipe untuk menampung jawaban yang sedang dikerjakan
+export type UserAnswerValue =
+  | number
+  | number[]
+  | boolean
+  | boolean[]
+  | string
+  | null;
+
+export interface QuestionResponse {
+  questionId: number; // Relasi ke BaseQuestion.id
+  type: QuizQuestion["type"]; // Mengikuti tipe soal agar mudah memprosesnya
+  userAnswer: UserAnswerValue;
+  isCompleted: boolean; // Flag untuk validasi apakah soal sudah dijawab
+  updatedAt: string; // Timestamp kapan jawaban disimpan
+}
+
+export interface QuizProgress {
+  quizId: number; // Relasi ke QuizData.id
+  startTime: string;
+  lastSaved: string;
+  responses: Record<number, QuestionResponse>; // Key adalah questionId untuk akses O(1)
+}
+
