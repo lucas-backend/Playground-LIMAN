@@ -1,9 +1,13 @@
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import MonitorRoundedIcon from "@mui/icons-material/MonitorRounded";
-import ColorLensIcon from '@mui/icons-material/ColorLens';
-import LoopIcon from '@mui/icons-material/Loop';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import ColorLensIcon from "@mui/icons-material/ColorLens";
+import LoopIcon from "@mui/icons-material/Loop";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import TaskIcon from "@mui/icons-material/Task";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import AssignmentLateIcon from "@mui/icons-material/AssignmentLate";
 
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import type { featureType } from "./types";
@@ -42,7 +46,7 @@ export const siswaFeatures: featureType[] = [
   },
 ];
 
-export const guruFeatures: featureType[] = [
+export const guruWaliFeatures: featureType[] = [
   {
     name: "Absensi",
     link: "#",
@@ -57,6 +61,54 @@ export const guruFeatures: featureType[] = [
     name: "Ujian",
     link: "#",
     icon: MonitorRoundedIcon,
+  },
+  {
+    name: "Tugas",
+    link: "#",
+    icon: TaskIcon,
+  },
+  {
+    name: "Penilaian",
+    link: "#",
+    icon: LibraryBooksIcon,
+  },
+  {
+    name: "Wali Kelas",
+    link: "#",
+    icon: HistoryEduIcon,
+  },
+  {
+    name: "Remedial",
+    link: "#",
+    icon: AssignmentLateIcon,
+  },
+];
+
+export const guruMapelFeatures: featureType[] = [
+  {
+    name: "Absensi",
+    link: "#",
+    icon: PeopleRoundedIcon,
+  },
+  {
+    name: "Latihan Soal",
+    link: "#",
+    icon: BorderColorRoundedIcon,
+  },
+  {
+    name: "Ujian",
+    link: "#",
+    icon: MonitorRoundedIcon,
+  },
+  {
+    name: "Tugas",
+    link: "#",
+    icon: TaskIcon,
+  },
+  {
+    name: "Penilaian",
+    link: "#",
+    icon: LibraryBooksIcon,
   },
 ];
 
