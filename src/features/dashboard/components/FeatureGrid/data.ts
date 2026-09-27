@@ -22,7 +22,7 @@ export const siswaFeatures: featureType[] = [
   },
   {
     name: "Passing Grade",
-    link: "/passing-grade",
+    link: "/passing_grade",
     icon: MonitorRoundedIcon,
   },
   {

@@ -1,6 +1,7 @@
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { useNavigate } from "react-router-dom";
 
 // Definisikan tipe data untuk props (TypeScript)
 export interface TryoutItem {
@@ -20,6 +21,11 @@ interface TryoutCardProps {
 }
 
 export default function QuizItemCard({ item }: TryoutCardProps) {
+  const navigate = useNavigate();
+  function handleNavigate(location: string) {
+    navigate(location);
+  }
+
   let bg_color: string;
   let currentStatus: string;
   let actionBgColor: string;
@@ -101,6 +107,15 @@ export default function QuizItemCard({ item }: TryoutCardProps) {
           <span className="text-sm ">Lokasi: {item.location}</span>
           <button
             className={`text-sm rounded-lg px-4 py-2 text-white ${actionBgColor}`}
+            onClick={() => {
+              // Kalau case 1: belum, maka jika ini di klik user akan diarahkan ke quiz
+              // kalau case 2: sedang dinilai, maka user tidak bisa menekan tombol ini
+              // Kalau case 3: sudah selesai, maka jika ini di klik user akan diarahkan ke halaman lihat hasil
+              switch(item.status) {
+                case 1: handleNavigate("/quiz/1"); break; // sementara begini untuk mockup
+                case 3: handleNavigate("/quiz_result/1"); break; //sementara begini untuk mockup 
+              }
+            }}
           >
             {actionText}
           </button>

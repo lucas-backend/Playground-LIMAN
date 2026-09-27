@@ -7,6 +7,11 @@ import Quiz from "./features/quiz/Quiz";
 import NotFound from "./pages/NotFound";
 import LatihanSoal from "./features/latihan-soal/LatihanSoal";
 import LatihanSoalMapel from "./features/latihan-soal/LatihanSoalMapel";
+import QuizResult from "./features/quiz-result/QuizResult";
+import QuizResultDetails from "./features/quiz-result/QuizResultDetails";
+import RiwayatQuiz from "./features/riwayat-quiz/RiwayatQuiz";
+import PassingGrade from "./features/passing-grade/PassingGrade";
+import PassingGradeUniv from "./features/passing-grade/PassingGradeUniv";
 
 export default function App() {
   return (
@@ -18,7 +23,16 @@ export default function App() {
         <Route path="/quiz/:id/*" element={<Quiz />} />
         <Route path="/jadwal-siswa/*" element={<Jadwal />} />
         <Route path="/latihan-soal" element={<LatihanSoal />} />
-        <Route path="/latihan-soal/mapel/:id" element={<LatihanSoalMapel/>}/>
+        <Route path="/latihan-soal/mapel/:id" element={<LatihanSoalMapel />} />
+        <Route path="/quiz_result/:id" element={<QuizResult />} />
+        <Route
+          path="/quiz_result/:id/details"
+          element={<QuizResultDetails />}
+        />
+        <Route path="/riwayat/*" element={<RiwayatQuiz />} />
+        <Route path="/passing_grade" element={<PassingGrade />} />
+        <Route path="/passing_grade/:id" element={<PassingGradeUniv/>}/>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
