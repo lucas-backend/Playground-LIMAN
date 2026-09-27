@@ -12,6 +12,9 @@ import QuizResultDetails from "./features/quiz-result/QuizResultDetails";
 import RiwayatQuiz from "./features/riwayat-quiz/RiwayatQuiz";
 import PassingGrade from "./features/passing-grade/PassingGrade";
 import PassingGradeUniv from "./features/passing-grade/PassingGradeUniv";
+import HasilMinatBakat from "./features/hasil-minat-bakat/HasilMinatBakat";
+import HasilMinatBakatJurusan from "./features/hasil-minat-bakat/HasilMinatBakatJurusan";
+import TambahTargetJurusanLain from "./features/hasil-minat-bakat/TambahTargetJurusanLain";
 
 export default function App() {
   return (
@@ -31,8 +34,16 @@ export default function App() {
         />
         <Route path="/riwayat/*" element={<RiwayatQuiz />} />
         <Route path="/passing_grade" element={<PassingGrade />} />
-        <Route path="/passing_grade/:id" element={<PassingGradeUniv/>}/>
-
+        <Route path="/passing_grade/:id" element={<PassingGradeUniv />} />
+        <Route path="/hasil_minat_bakat/:id" element={<HasilMinatBakat />} />
+        <Route
+          path="/hasil_minat_bakat/:id/jurusan/:id_jurusan"
+          element={<HasilMinatBakatJurusan />}
+        />
+        <Route
+          path="/hasil_minat_bakat/:id/tambah_jurusan"
+          element={<TambahTargetJurusanLain />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
