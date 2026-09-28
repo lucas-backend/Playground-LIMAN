@@ -87,7 +87,7 @@ export const guruWaliFeatures: featureType[] = [
 export const guruMapelFeatures: featureType[] = [
   {
     name: "Absensi",
-    link: "#",
+    link: "/guruMapel/absensi",
     icon: PeopleRoundedIcon,
   },
   {

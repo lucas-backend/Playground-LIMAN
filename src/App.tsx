@@ -15,6 +15,8 @@ import PassingGradeUniv from "./features/passing-grade/PassingGradeUniv";
 import HasilMinatBakat from "./features/hasil-minat-bakat/HasilMinatBakat";
 import HasilMinatBakatJurusan from "./features/hasil-minat-bakat/HasilMinatBakatJurusan";
 import TambahTargetJurusanLain from "./features/hasil-minat-bakat/TambahTargetJurusanLain";
+import Absensi from "./features/guruMapel/absensi/Absensi";
+import AbsensiKelas from "./features/guruMapel/absensi/AbsensiKelas";
 
 export default function App() {
   return (
@@ -23,19 +25,28 @@ export default function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/quiz/:id/*" element={<Quiz />} />
+        <Route path="/quiz/:quiz_id/*" element={<Quiz />} />
         <Route path="/jadwal-siswa/*" element={<Jadwal />} />
         <Route path="/latihan-soal" element={<LatihanSoal />} />
-        <Route path="/latihan-soal/mapel/:id" element={<LatihanSoalMapel />} />
-        <Route path="/quiz_result/:id" element={<QuizResult />} />
+        <Route
+          path="/latihan-soal/mapel/:mapel_id"
+          element={<LatihanSoalMapel />}
+        />
+        <Route path="/quiz_result/:quiz_result_id" element={<QuizResult />} />
         <Route
           path="/quiz_result/:id/details"
           element={<QuizResultDetails />}
         />
         <Route path="/riwayat/*" element={<RiwayatQuiz />} />
         <Route path="/passing_grade" element={<PassingGrade />} />
-        <Route path="/passing_grade/:id" element={<PassingGradeUniv />} />
-        <Route path="/hasil_minat_bakat/:id" element={<HasilMinatBakat />} />
+        <Route
+          path="/passing_grade/:passing_grade_id"
+          element={<PassingGradeUniv />}
+        />
+        <Route
+          path="/hasil_minat_bakat/:quiz_minat_bakat_id"
+          element={<HasilMinatBakat />}
+        />
         <Route
           path="/hasil_minat_bakat/:id/jurusan/:id_jurusan"
           element={<HasilMinatBakatJurusan />}
@@ -44,6 +55,9 @@ export default function App() {
           path="/hasil_minat_bakat/:id/tambah_jurusan"
           element={<TambahTargetJurusanLain />}
         />
+        <Route path="/guruMapel/absensi" element={<Absensi />} />
+        <Route path="/guruMapel/absensi/:kelas_id" element={<AbsensiKelas />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
