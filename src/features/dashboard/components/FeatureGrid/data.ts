@@ -49,7 +49,7 @@ export const siswaFeatures: featureType[] = [
 export const guruWaliFeatures: featureType[] = [
   {
     name: "Absensi",
-    link: "/guruWali/absensi/1",
+    link: "/guruMapel/absensi",
     icon: PeopleRoundedIcon,
   },
   {
@@ -74,7 +74,7 @@ export const guruWaliFeatures: featureType[] = [
   },
   {
     name: "Wali Kelas",
-    link: "#",
+    link: "/guruWali/absensi/1",
     icon: HistoryEduIcon,
   },
   {

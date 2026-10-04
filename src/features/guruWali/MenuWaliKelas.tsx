@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "../../components/Header";
+import XPadding from "../../components/XPadding";
 
 // Import Ikon Material UI
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
@@ -13,7 +13,15 @@ import { useNavigate } from "react-router-dom";
 // Dummy data siswa sesuai gambar
 const dataSiswa = [
   { nama: "Yaza Nurzahira", h: 8, i: 0, s: 0, a: 0, d: 0, persentase: "100%" },
-  ...Array(10).fill({ nama: "Nama Siswa", h: 8, i: 0, s: 0, a: 0, d: 0, persentase: "100%" }),
+  ...Array(10).fill({
+    nama: "Nama Siswa",
+    h: 8,
+    i: 0,
+    s: 0,
+    a: 0,
+    d: 0,
+    persentase: "100%",
+  }),
 ];
 
 interface TabItem {
@@ -41,7 +49,7 @@ const tabs: TabItem[] = [
   },
 ];
 
-export default function AbsensiWali() {
+export default function MenuWaliKelas() {
   const navigate = useNavigate();
   // Diubah default-nya ke Catatan Konseling sesuai gambar terbaru kamu
   const [activeTab, setActiveTab] = useState("Catatan Konseling");
@@ -94,13 +102,22 @@ export default function AbsensiWali() {
                 <table className="w-full text-center border-collapse text-sm">
                   <thead>
                     <tr className="border-b border-slate-200 bg-white">
-                      <th rowSpan={2} className="py-3 px-4 text-left font-semibold border-r border-slate-200 w-1/3">
+                      <th
+                        rowSpan={2}
+                        className="py-3 px-4 text-left font-semibold border-r border-slate-200 w-1/3"
+                      >
                         Nama
                       </th>
-                      <th colSpan={5} className="py-1.5 font-semibold border-b border-slate-200">
+                      <th
+                        colSpan={5}
+                        className="py-1.5 font-semibold border-b border-slate-200"
+                      >
                         Total Absen
                       </th>
-                      <th rowSpan={2} className="py-3 px-2 font-semibold border-l border-slate-200">
+                      <th
+                        rowSpan={2}
+                        className="py-3 px-2 font-semibold border-l border-slate-200"
+                      >
                         Detail
                       </th>
                     </tr>
@@ -114,19 +131,32 @@ export default function AbsensiWali() {
                   </thead>
                   <tbody>
                     {dataSiswa.map((siswa, idx) => (
-                      <tr key={idx} className="border-b border-slate-100 last:border-none hover:bg-slate-50">
+                      <tr
+                        key={idx}
+                        className="border-b border-slate-100 last:border-none hover:bg-slate-50"
+                      >
                         <td className="py-3 px-4 text-left font-medium text-slate-900 border-r border-slate-200 truncate max-w-[120px]">
                           {siswa.nama}
                         </td>
-                        <td className="py-3 border-r border-slate-100 text-slate-700">{siswa.h}</td>
-                        <td className="py-3 border-r border-slate-100 text-slate-700">{siswa.i}</td>
-                        <td className="py-3 border-r border-slate-100 text-slate-700">{siswa.s}</td>
-                        <td className="py-3 border-r border-slate-100 text-slate-700">{siswa.a}</td>
+                        <td className="py-3 border-r border-slate-100 text-slate-700">
+                          {siswa.h}
+                        </td>
+                        <td className="py-3 border-r border-slate-100 text-slate-700">
+                          {siswa.i}
+                        </td>
+                        <td className="py-3 border-r border-slate-100 text-slate-700">
+                          {siswa.s}
+                        </td>
+                        <td className="py-3 border-r border-slate-100 text-slate-700">
+                          {siswa.a}
+                        </td>
                         <td className="py-3 text-slate-700">{siswa.d}</td>
                         <td className="py-3 border-l border-slate-200">
                           <button
                             className="text-blue-500 hover:text-blue-600 inline-flex items-center justify-center"
-                            onClick={() => navigate("/guruWali/absensi/siswa/1")}
+                            onClick={() =>
+                              navigate("/guruWali/absensi/siswa/1")
+                            }
                           >
                             <VisibilityIcon style={{ fontSize: 20 }} />
                           </button>
@@ -161,7 +191,7 @@ export default function AbsensiWali() {
                       <span className="inline-block bg-[#c8e6c9] text-[#2e7d32] text-xs font-semibold px-4 py-1.5 rounded-full border border-[#a5d6a7] min-w-[65px] text-center">
                         {siswa.persentase}
                       </span>
-                      <button 
+                      <button
                         onClick={() => navigate(`/guruWali/rapot/siswa/${idx}`)}
                         className="text-slate-400 hover:text-slate-600 p-0.5 inline-flex items-center justify-center"
                       >
@@ -200,7 +230,9 @@ export default function AbsensiWali() {
 
                     {/* Sisi Kanan: Button Lihat Catatan Biru */}
                     <button
-                      onClick={() => navigate(`/guruWali/konseling/siswa/${idx}`)}
+                      onClick={() =>
+                        navigate(`/guruWali/konseling/siswa/${idx}`)
+                      }
                       className="bg-[#1e88e5] hover:bg-blue-600 text-white text-xs font-medium px-4 py-1.5 rounded-lg shadow-sm transition active:scale-[0.98] whitespace-nowrap"
                     >
                       Lihat catatan

@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../../../components/Header";
-import XPadding from "../../../../components/XPadding";
+import Header from "../../../components/Header";
+import XPadding from "../../../components/XPadding";
 
 // Data absensi mata pelajaran berdasarkan gambar
 const detailHariData = [
@@ -31,17 +31,30 @@ export default function AbsensiWaliDetailSiswaDetailHari() {
             <table className="w-full text-center border-collapse text-sm table-fixed">
               <thead>
                 <tr className="border-b border-slate-200 bg-white font-semibold text-slate-900">
-                  <th className="py-4 px-4 text-left font-semibold w-[35%]">Waktu</th>
-                  <th className="py-4 text-left font-semibold w-[40%]">Mata Pelajaran</th>
-                  <th className="py-4 px-4 text-center font-semibold w-[25%]">Keterangan</th>
+                  <th className="py-4 px-4 text-left font-semibold w-[35%]">
+                    Waktu
+                  </th>
+                  <th className="py-4 text-left font-semibold w-[40%]">
+                    Mata Pelajaran
+                  </th>
+                  <th className="py-4 px-4 text-center font-semibold w-[25%]">
+                    Keterangan
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {/* Menampilkan Baris Data */}
                 {detailHariData.map((row, idx) => (
-                  <tr key={idx} className="border-b border-slate-100 bg-white h-[48px]">
-                    <td className="py-2 px-4 text-left font-medium text-slate-700">{row.waktu}</td>
-                    <td className="py-2 text-left text-slate-700">{row.mapel}</td>
+                  <tr
+                    key={idx}
+                    className="border-b border-slate-100 bg-white h-[48px]"
+                  >
+                    <td className="py-2 px-4 text-left font-medium text-slate-700">
+                      {row.waktu}
+                    </td>
+                    <td className="py-2 text-left text-slate-700">
+                      {row.mapel}
+                    </td>
                     <td className="py-2 px-4 text-center">
                       <span
                         className={`inline-block w-full max-w-[75px] py-1 text-xs font-semibold rounded-full border text-center ${
@@ -58,7 +71,10 @@ export default function AbsensiWaliDetailSiswaDetailHari() {
 
                 {/* Menampilkan Baris Kosong Tambahan */}
                 {emptyRows.map((_, idx) => (
-                  <tr key={`empty-${idx}`} className="border-b border-slate-100 bg-white h-[48px]">
+                  <tr
+                    key={`empty-${idx}`}
+                    className="border-b border-slate-100 bg-white h-[48px]"
+                  >
                     <td className="py-2 px-4"></td>
                     <td className="py-2"></td>
                     <td className="py-2 px-4"></td>

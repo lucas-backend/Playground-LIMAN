@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../../../components/Header";
-import XPadding from "../../../../components/XPadding";
+import Header from "../../../components/Header";
+import XPadding from "../../../components/XPadding";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate } from "react-router-dom";
 

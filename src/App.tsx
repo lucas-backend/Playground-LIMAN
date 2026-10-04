@@ -19,9 +19,9 @@ import Absensi from "./features/guruMapel/absensi/Absensi";
 import AbsensiKelas from "./features/guruMapel/absensi/AbsensiKelas";
 import AbsensiPertemuan from "./features/guruMapel/absensi/pertemuan/AbsensiPertemuan";
 import DetailSiswa from "./features/guruMapel/absensi/detailSiswa/DetailSiswa";
-import AbsensiWali from "./features/guruWali/absensi/AbsensiWali";
-import AbsensiWaliDetailSiswa from "./features/guruWali/absensi/absensiDetail/AbsensiWaliDetailSiswa";
-import AbsensiWaliDetailSiswaDetailHari from "./features/guruWali/absensi/absensiDetail/AbsensiWaliDetailSiswaDetailHari";
+import MenuWaliKelas from "./features/guruWali/MenuWaliKelas";
+import AbsensiWaliDetailSiswa from "./features/guruWali/absensi/AbsensiWaliDetailSiswa";
+import AbsensiWaliDetailSiswaDetailHari from "./features/guruWali/absensi/AbsensiWaliDetailSiswaDetailHari";
 import RapotSiswaWali from "./features/guruWali/rapotSiswa/RapotSiswaWali";
 import RapotSiswaWaliDetailNilai from "./features/guruWali/rapotSiswa/RapotSiswaWaliDetailNilai";
 import RapotAbsensi from "./features/guruWali/rapotSiswa/RapotAbsensi";
@@ -88,7 +88,7 @@ export default function App() {
         />
 
         <Route path="/detail/siswa/:id" element={<DetailSiswa />} />
-        <Route path="/guruWali/absensi/:kelas_id" element={<AbsensiWali />} />
+        <Route path="/guruWali/absensi/:kelas_id" element={<MenuWaliKelas />} />
         <Route
           path="/guruWali/absensi/siswa/:siswa_id"
           element={<AbsensiWaliDetailSiswa />}
