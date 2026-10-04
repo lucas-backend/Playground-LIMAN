@@ -1,5 +1,6 @@
 import { useState } from "react";
 import XPadding from "../../../components/XPadding";
+import { useNavigate } from "react-router-dom";
 
 type Pertemuan = {
   no: number;
@@ -240,6 +241,8 @@ export default function AbsensiKelasTabPertemuan() {
     null,
   );
 
+  const navigate = useNavigate();
+
   function handleTambahPertemuan() {
     setSelectedPertemuan(null);
     setIsPopupOpen(true);
@@ -312,7 +315,12 @@ export default function AbsensiKelasTabPertemuan() {
           return (
             <div className="flex w-full gap-2" key={pertemuan.no}>
               {/* Kotak besar */}
-              <div className="p-4 bg-blue-500 rounded-lg flex-1 text-white flex flex-col">
+              <div
+                className="p-4 bg-blue-500 rounded-lg flex-1 text-white flex flex-col hover:cursor-pointer"
+                onClick={() => {
+                  navigate("/guruMapel/absensi/1/pertemuan/1");
+                }}
+              >
                 <h3 className="font-semibold text-xl">
                   Pertemuan {pertemuan.no}
                 </h3>

@@ -17,6 +17,15 @@ import HasilMinatBakatJurusan from "./features/hasil-minat-bakat/HasilMinatBakat
 import TambahTargetJurusanLain from "./features/hasil-minat-bakat/TambahTargetJurusanLain";
 import Absensi from "./features/guruMapel/absensi/Absensi";
 import AbsensiKelas from "./features/guruMapel/absensi/AbsensiKelas";
+import AbsensiPertemuan from "./features/guruMapel/absensi/pertemuan/AbsensiPertemuan";
+import DetailSiswa from "./features/guruMapel/absensi/detailSiswa/DetailSiswa";
+import AbsensiWali from "./features/guruWali/absensi/AbsensiWali";
+import AbsensiWaliDetailSiswa from "./features/guruWali/absensi/absensiDetail/AbsensiWaliDetailSiswa";
+import AbsensiWaliDetailSiswaDetailHari from "./features/guruWali/absensi/absensiDetail/AbsensiWaliDetailSiswaDetailHari";
+import RapotSiswaWali from "./features/guruWali/rapotSiswa/RapotSiswaWali";
+import RapotSiswaWaliDetailNilai from "./features/guruWali/rapotSiswa/RapotSiswaWaliDetailNilai";
+import RapotAbsensi from "./features/guruWali/rapotSiswa/RapotAbsensi";
+import RapotAbsensiMateri from "./features/guruWali/rapotSiswa/RapotAbsensiMateri";
 
 export default function App() {
   return (
@@ -57,6 +66,29 @@ export default function App() {
         />
         <Route path="/guruMapel/absensi" element={<Absensi />} />
         <Route path="/guruMapel/absensi/:kelas_id" element={<AbsensiKelas />} />
+        <Route
+          path="/guruMapel/absensi/:kelas_id/pertemuan/:pertemuan_id"
+          element={<AbsensiPertemuan />}
+        />
+
+        <Route path="/detail/siswa/:id" element={<DetailSiswa />} />
+        <Route path="/guruWali/absensi/:kelas_id" element={<AbsensiWali />} />
+        <Route
+          path="/guruWali/absensi/siswa/:siswa_id"
+          element={<AbsensiWaliDetailSiswa />}
+        />
+        <Route
+          path="/guruWali/absensi/siswa/:siswa_id/detail/"
+          element={<AbsensiWaliDetailSiswaDetailHari />}
+        />
+        <Route
+          path="/guruWali/rapot/siswa/:siswa_id"
+          element={<RapotSiswaWali />}
+        />
+
+        <Route path="/guruWali/rapot/siswa/:siswa_id/mapel/:mapel_id" element={<RapotSiswaWaliDetailNilai/>} />
+        <Route path="/guruWali/rapot/absensi/siswa/:siswa_id" element={<RapotAbsensi/>} />
+        <Route path="/guruWali/rapot/absensi/siswa/:siswa_id/materi/:materi_id" element={<RapotAbsensiMateri/>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -49,7 +49,7 @@ export const siswaFeatures: featureType[] = [
 export const guruWaliFeatures: featureType[] = [
   {
     name: "Absensi",
-    link: "#",
+    link: "/guruWali/absensi/1",
     icon: PeopleRoundedIcon,
   },
   {
