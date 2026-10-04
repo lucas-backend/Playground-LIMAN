@@ -29,6 +29,9 @@ import RapotAbsensiMateri from "./features/guruWali/rapotSiswa/RapotAbsensiMater
 import KonselingWali from "./features/guruWali/konselingWali/KonselingWali";
 import CatatanKonselingWali from "./features/guruWali/konselingWali/CatatanKonselingWali";
 import CatatanKonselingWaliTindakLanjut from "./features/guruWali/konselingWali/CatatanKonselingWaliTindakLanjut";
+import LatihanSoalGuru from "./features/guru/LatihanSoal/LatihanSoalGuru";
+import TambahSoalLatihan from "./features/guru/LatihanSoal/TambahSoalLatihan";
+import EditSoalGuru from "./features/guru/LatihanSoal/EditSoalGuru";
 
 export default function App() {
   return (
@@ -114,6 +117,23 @@ export default function App() {
           path="/guruWali/konseling/siswa/:siswa_id/tindakLanjut/:id_catatan_bk"
           element={<CatatanKonselingWaliTindakLanjut />}
         />
+
+        <Route
+          path="/guru/latihanSoal"
+          element={<LatihanSoalGuru />}
+        />
+        <Route
+          path="/guru/latihanSoal/tambahSoal"
+          element={<TambahSoalLatihan />}
+        />
+        {/* /guru/latihanSoal/tambahSoal */}
+        {/* /guru/latihanSoal/editSoal/1/soal/1 */}
+        <Route
+          path="/guru/latihanSoal/editSoal/:id_soal/soal/:id_pertanyaan"
+          element={<EditSoalGuru />}
+        />
+
+
 
         <Route path="*" element={<NotFound />} />
       </Routes>

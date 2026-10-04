@@ -54,7 +54,7 @@ export const guruWaliFeatures: featureType[] = [
   },
   {
     name: "Latihan Soal",
-    link: "#",
+    link: "/guru/latihanSoal",
     icon: BorderColorRoundedIcon,
   },
   {
