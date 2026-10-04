@@ -26,6 +26,9 @@ import RapotSiswaWali from "./features/guruWali/rapotSiswa/RapotSiswaWali";
 import RapotSiswaWaliDetailNilai from "./features/guruWali/rapotSiswa/RapotSiswaWaliDetailNilai";
 import RapotAbsensi from "./features/guruWali/rapotSiswa/RapotAbsensi";
 import RapotAbsensiMateri from "./features/guruWali/rapotSiswa/RapotAbsensiMateri";
+import KonselingWali from "./features/guruWali/konselingWali/KonselingWali";
+import CatatanKonselingWali from "./features/guruWali/konselingWali/CatatanKonselingWali";
+import CatatanKonselingWaliTindakLanjut from "./features/guruWali/konselingWali/CatatanKonselingWaliTindakLanjut";
 
 export default function App() {
   return (
@@ -86,9 +89,31 @@ export default function App() {
           element={<RapotSiswaWali />}
         />
 
-        <Route path="/guruWali/rapot/siswa/:siswa_id/mapel/:mapel_id" element={<RapotSiswaWaliDetailNilai/>} />
-        <Route path="/guruWali/rapot/absensi/siswa/:siswa_id" element={<RapotAbsensi/>} />
-        <Route path="/guruWali/rapot/absensi/siswa/:siswa_id/materi/:materi_id" element={<RapotAbsensiMateri/>} />
+        <Route
+          path="/guruWali/rapot/siswa/:siswa_id/mapel/:mapel_id"
+          element={<RapotSiswaWaliDetailNilai />}
+        />
+        <Route
+          path="/guruWali/rapot/absensi/siswa/:siswa_id"
+          element={<RapotAbsensi />}
+        />
+        <Route
+          path="/guruWali/rapot/absensi/siswa/:siswa_id/materi/:materi_id"
+          element={<RapotAbsensiMateri />}
+        />
+
+        <Route
+          path="/guruWali/konseling/siswa/:siswa_id"
+          element={<KonselingWali />}
+        />
+        <Route
+          path="/guruWali/konseling/siswa/:siswa_id/catatan"
+          element={<CatatanKonselingWali />}
+        />
+        <Route
+          path="/guruWali/konseling/siswa/:siswa_id/tindakLanjut/:id_catatan_bk"
+          element={<CatatanKonselingWaliTindakLanjut />}
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
