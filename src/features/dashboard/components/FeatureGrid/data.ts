@@ -64,12 +64,12 @@ export const guruWaliFeatures: featureType[] = [
   },
   {
     name: "Tugas",
-    link: "#",
+    link: "/guru/tugas",
     icon: TaskIcon,
   },
   {
     name: "Penilaian",
-    link: "#",
+    link: "/guru/penilaian",
     icon: LibraryBooksIcon,
   },
   {
@@ -79,7 +79,7 @@ export const guruWaliFeatures: featureType[] = [
   },
   {
     name: "Remedial",
-    link: "#",
+    link: "/guru/remedial",
     icon: AssignmentLateIcon,
   },
 ];

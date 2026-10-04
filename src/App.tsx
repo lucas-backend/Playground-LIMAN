@@ -42,6 +42,12 @@ import EditSoalUjianGuru from "./features/guru/Ujian/EditSoalUjianGuru";
 import BankSoalUjianGuruMapel from "./features/guru/Ujian/BankSoalUjianGuruMapel";
 import BankSoalUjianGuruMapelSoal from "./features/guru/Ujian/BankSoalUjianGuruMapel";
 import BankSoalUjianGuruMapelSoalDetail from "./features/guru/Ujian/BankSoalUjianGuruMapel";
+import GuruTugas from "./features/guru/Tugas/GuruTugas";
+import GuruPenilaian from "./features/guru/Penilaian/GuruPenilaian";
+import GuruRemedial from "./features/guru/Remedial/GuruRemedial";
+import GuruTugasMapel from "./features/guru/Tugas/GuruTugasMapel";
+import GuruTugasTambahTugas from "./features/guru/Tugas/GuruTugasTambahTugas";
+import GuruTugasListSiswa from "./features/guru/Tugas/GuruTugasListSiswa";
 
 export default function App() {
   return (
@@ -172,6 +178,22 @@ export default function App() {
           path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
           element={<BankSoalUjianGuruMapelSoalDetail />}
         />
+
+        {/* ========================= */}
+        <Route path="/guru/tugas" element={<GuruTugas />} />
+        <Route path="/guru/tugas/:mapel_id" element={<GuruTugasMapel />} />
+        <Route path="/guru/tugas/:mapel_id/tambahTugas" element={<GuruTugasTambahTugas />} />
+        <Route path="/guru/tugas/:mapel_id/listSiswa/:tugas_id" element={<GuruTugasListSiswa />} />
+        
+
+        {/* ========================= */}
+        <Route path="/guru/penilaian" element={<GuruPenilaian />} />
+        {/* <Route path="/guru/penilaian/kelas/:kelas_id" element={<GuruPenilaianKelas />} />
+        <Route path="/guru/penilaian/:kelas_id/siswa" element={<GuruPenilaian />} /> */}
+        
+        
+        {/* ========================= */}
+        <Route path="/guru/remedial" element={<GuruRemedial />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
