@@ -36,6 +36,12 @@ import BankSoalGuru from "./features/guru/LatihanSoal/BankSoalGuru";
 import BankSoalGuruMapel from "./features/guru/LatihanSoal/BankSoalGuruMapel";
 import BankSoalGuruMapelSoal from "./features/guru/LatihanSoal/BankSoalGuruMapelSoal";
 import BankSoalGuruMapelSoalDetail from "./features/guru/LatihanSoal/BankSoalGuruMapelSoalDetail";
+import UjianSoalGuru from "./features/guru/Ujian/UjianSoalGuru";
+import TambahSoalUjian from "./features/guru/Ujian/TambahSoalUjian";
+import EditSoalUjianGuru from "./features/guru/Ujian/EditSoalUjianGuru";
+import BankSoalUjianGuruMapel from "./features/guru/Ujian/BankSoalUjianGuruMapel";
+import BankSoalUjianGuruMapelSoal from "./features/guru/Ujian/BankSoalUjianGuruMapel";
+import BankSoalUjianGuruMapelSoalDetail from "./features/guru/Ujian/BankSoalUjianGuruMapel";
 
 export default function App() {
   return (
@@ -122,24 +128,17 @@ export default function App() {
           element={<CatatanKonselingWaliTindakLanjut />}
         />
 
-        <Route
-          path="/guru/latihanSoal"
-          element={<LatihanSoalGuru />}
-        />
+        {/* =============================== Latihan Soal =============================== */}
+        <Route path="/guru/latihanSoal" element={<LatihanSoalGuru />} />
         <Route
           path="/guru/latihanSoal/tambahSoal"
           element={<TambahSoalLatihan />}
         />
-        {/* /guru/latihanSoal/tambahSoal */}
-        {/* /guru/latihanSoal/editSoal/1/soal/1 */}
         <Route
           path="/guru/latihanSoal/editSoal/:id_soal/soal/:id_pertanyaan"
           element={<EditSoalGuru />}
         />
-        <Route
-          path="/guru/latihanSoal/bankSoal"
-          element={<BankSoalGuru />}
-        />
+        <Route path="/guru/latihanSoal/bankSoal" element={<BankSoalGuru />} />
         <Route
           path="/guru/latihanSoal/bankSoal/:mapel_id"
           element={<BankSoalGuruMapel />}
@@ -153,7 +152,26 @@ export default function App() {
           element={<BankSoalGuruMapelSoalDetail />}
         />
 
-
+        {/* =============================== UJIAN =============================== */}
+        <Route path="/guru/ujian/" element={<UjianSoalGuru />} />
+        <Route path="/guru/ujian/tambahSoal" element={<TambahSoalUjian />} />
+        <Route
+          path="/guru/ujian/editSoal/:id_soal/soal/:id_pertanyaan"
+          element={<EditSoalUjianGuru />}
+        />
+        <Route path="/guru/ujian/bankSoal" element={<BankSoalGuru />} />
+        <Route
+          path="/guru/ujian/bankSoal/:mapel_id"
+          element={<BankSoalUjianGuruMapel />}
+        />
+        <Route
+          path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id"
+          element={<BankSoalUjianGuruMapelSoal />}
+        />
+        <Route
+          path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
+          element={<BankSoalUjianGuruMapelSoalDetail />}
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

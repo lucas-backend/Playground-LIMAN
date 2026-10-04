@@ -59,7 +59,7 @@ export const guruWaliFeatures: featureType[] = [
   },
   {
     name: "Ujian",
-    link: "#",
+    link: "/guru/ujian",
     icon: MonitorRoundedIcon,
   },
   {
