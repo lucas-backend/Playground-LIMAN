@@ -32,6 +32,10 @@ import CatatanKonselingWaliTindakLanjut from "./features/guruWali/konselingWali/
 import LatihanSoalGuru from "./features/guru/LatihanSoal/LatihanSoalGuru";
 import TambahSoalLatihan from "./features/guru/LatihanSoal/TambahSoalLatihan";
 import EditSoalGuru from "./features/guru/LatihanSoal/EditSoalGuru";
+import BankSoalGuru from "./features/guru/LatihanSoal/BankSoalGuru";
+import BankSoalGuruMapel from "./features/guru/LatihanSoal/BankSoalGuruMapel";
+import BankSoalGuruMapelSoal from "./features/guru/LatihanSoal/BankSoalGuruMapelSoal";
+import BankSoalGuruMapelSoalDetail from "./features/guru/LatihanSoal/BankSoalGuruMapelSoalDetail";
 
 export default function App() {
   return (
@@ -131,6 +135,22 @@ export default function App() {
         <Route
           path="/guru/latihanSoal/editSoal/:id_soal/soal/:id_pertanyaan"
           element={<EditSoalGuru />}
+        />
+        <Route
+          path="/guru/latihanSoal/bankSoal"
+          element={<BankSoalGuru />}
+        />
+        <Route
+          path="/guru/latihanSoal/bankSoal/:mapel_id"
+          element={<BankSoalGuruMapel />}
+        />
+        <Route
+          path="/guru/latihanSoal/bankSoal/:mapel_id/soal/:soal_id"
+          element={<BankSoalGuruMapelSoal />}
+        />
+        <Route
+          path="/guru/latihanSoal/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
+          element={<BankSoalGuruMapelSoalDetail />}
         />
 
 

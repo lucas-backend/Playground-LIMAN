@@ -1,0 +1,25 @@
+import Header from "../../../components/Header";
+import XPadding from "../../../components/XPadding";
+import { DATA } from "./bankSoalData";
+import { IkonKotak, KartuLink } from "./BankSoalUI";
+
+// Route: /guru/latihanSoal/bankSoal
+export default function BankSoalGuru() {
+  return (
+    <div>
+      <Header title="Bank Soal" />
+      <XPadding>
+        <h1 className="mt-8 mb-4 text-lg">Mata Pelajaran</h1>
+        <div className="grid grid-cols-2 gap-4 pb-8">
+          {DATA.map((m) => (
+            <KartuLink key={m.id} to={`/guru/latihanSoal/bankSoal/${m.id}`} className="p-4">
+              <IkonKotak ikon={m.ikon} warna={m.warna} />
+              <p className="mt-3 text-sm font-semibold">{m.nama}</p>
+              <p className="text-[10px] opacity-70">{m.bank.length} Bank Soal</p>
+            </KartuLink>
+          ))}
+        </div>
+      </XPadding>
+    </div>
+  );
+}
