@@ -51,6 +51,9 @@ import GuruTugasListSiswa from "./features/guru/Tugas/GuruTugasListSiswa";
 import GuruPenilaianKelas from "./features/guru/Penilaian/GuruPenilaianKelas";
 import GuruPenilaianKelasSiswa from "./features/guru/Penilaian/GuruPenialaianKelasSiswa";
 import GuruPenilaianKelasSiswaRekap from "./features/guru/Penilaian/GuruPenilaianKelasSiswaRekap";
+import Koreksi from "./features/guru/Koreksi/Koreksi";
+import KoreksiSiswa from "./features/guru/Koreksi/KoreksiSiswa";
+import KoreksiSiswaPertanyaan from "./features/guru/Koreksi/KoreksiSiswaPertanyaan";
 
 export default function App() {
   return (
@@ -185,19 +188,36 @@ export default function App() {
         {/* ========================= */}
         <Route path="/guru/tugas" element={<GuruTugas />} />
         <Route path="/guru/tugas/:mapel_id" element={<GuruTugasMapel />} />
-        <Route path="/guru/tugas/:mapel_id/tambahTugas" element={<GuruTugasTambahTugas />} />
-        <Route path="/guru/tugas/:mapel_id/listSiswa/:tugas_id" element={<GuruTugasListSiswa />} />
-        
+        <Route
+          path="/guru/tugas/:mapel_id/tambahTugas"
+          element={<GuruTugasTambahTugas />}
+        />
+        <Route
+          path="/guru/tugas/:mapel_id/listSiswa/:tugas_id"
+          element={<GuruTugasListSiswa />}
+        />
 
         {/* ========================= */}
         <Route path="/guru/penilaian" element={<GuruPenilaian />} />
-        <Route path="/guru/penilaian/kelas/:kelas_id" element={<GuruPenilaianKelas />} />
-        <Route path="/guru/penilaian/:kelas_id/siswa/:siswa_id" element={<GuruPenilaianKelasSiswa />} /> 
-        <Route path="/guru/penilaian/:kelas_id/siswa/:siswa_id/rekap" element={<GuruPenilaianKelasSiswaRekap />} /> 
-        
-        
+        <Route
+          path="/guru/penilaian/kelas/:kelas_id"
+          element={<GuruPenilaianKelas />}
+        />
+        <Route
+          path="/guru/penilaian/:kelas_id/siswa/:siswa_id"
+          element={<GuruPenilaianKelasSiswa />}
+        />
+        <Route
+          path="/guru/penilaian/:kelas_id/siswa/:siswa_id/rekap"
+          element={<GuruPenilaianKelasSiswaRekap />}
+        />
+
         {/* ========================= */}
         <Route path="/guru/remedial" element={<GuruRemedial />} />
+
+        <Route path="/guru/koreksi/:soal_id" element={<Koreksi />} />
+        <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id" element={<KoreksiSiswa/>}/>
+        <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id/pertanyaan/:pertanyaan_id" element={<KoreksiSiswaPertanyaan/>}/>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -50,7 +50,10 @@ export default function UjianSoalGuru() {
                   {activeTab} 1
                 </h2>
               </div>
-              <button className="rounded-lg bg-white px-5 py-1.5 text-xs font-semibold text-[#1E88E5] transition hover:bg-opacity-90">
+              <button className="rounded-lg bg-white px-5 py-1.5 text-xs font-semibold text-[#1E88E5] transition hover:bg-opacity-90"
+              onClick={() => {
+                navigate("/guru/koreksi/1");
+              }}>
                 Detail
               </button>
             </div>
