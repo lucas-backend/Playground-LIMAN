@@ -48,6 +48,9 @@ import GuruRemedial from "./features/guru/Remedial/GuruRemedial";
 import GuruTugasMapel from "./features/guru/Tugas/GuruTugasMapel";
 import GuruTugasTambahTugas from "./features/guru/Tugas/GuruTugasTambahTugas";
 import GuruTugasListSiswa from "./features/guru/Tugas/GuruTugasListSiswa";
+import GuruPenilaianKelas from "./features/guru/Penilaian/GuruPenilaianKelas";
+import GuruPenilaianKelasSiswa from "./features/guru/Penilaian/GuruPenialaianKelasSiswa";
+import GuruPenilaianKelasSiswaRekap from "./features/guru/Penilaian/GuruPenilaianKelasSiswaRekap";
 
 export default function App() {
   return (
@@ -188,8 +191,9 @@ export default function App() {
 
         {/* ========================= */}
         <Route path="/guru/penilaian" element={<GuruPenilaian />} />
-        {/* <Route path="/guru/penilaian/kelas/:kelas_id" element={<GuruPenilaianKelas />} />
-        <Route path="/guru/penilaian/:kelas_id/siswa" element={<GuruPenilaian />} /> */}
+        <Route path="/guru/penilaian/kelas/:kelas_id" element={<GuruPenilaianKelas />} />
+        <Route path="/guru/penilaian/:kelas_id/siswa/:siswa_id" element={<GuruPenilaianKelasSiswa />} /> 
+        <Route path="/guru/penilaian/:kelas_id/siswa/:siswa_id/rekap" element={<GuruPenilaianKelasSiswaRekap />} /> 
         
         
         {/* ========================= */}
