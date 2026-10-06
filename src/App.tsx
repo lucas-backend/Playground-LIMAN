@@ -223,9 +223,10 @@ export default function App() {
         <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id/pertanyaan/:pertanyaan_id" element={<KoreksiSiswaPertanyaan/>}/>
         {/* ========================= */}
 
-        <Route path="/guruBK/konseling*" element={<Konseling/>}/>
-        <Route path="/guruBK/rekap*" element={<Rekap/>}/>
-        <Route path="/guruBK/minatBakat*" element={<MinatBakat/>}/>
+        <Route path="/guruBK/konseling/*" element={<Konseling/>}/>
+        <Route path="/guruBK/rekap/*" element={<Rekap/>}/>
+        <Route path="/rekap/*" element={<Rekap/>}/>
+        <Route path="/guruBK/minatBakat/*" element={<MinatBakat/>}/>
 
         <Route path="*" element={<NotFound />} />
       </Routes>
