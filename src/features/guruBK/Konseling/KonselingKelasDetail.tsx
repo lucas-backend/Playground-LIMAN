@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import XPadding from "../../../components/XPadding";
 
 type Siswa = {
@@ -22,6 +22,8 @@ export default function KonselingKelasDetail() {
   // Contoh: "10-ipa-1" -> "Kelas 10 IPA 1"
   const namaKelas = `Kelas ${kelas_id?.replace(/-/g, " ").toUpperCase()}`;
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <XPadding className="mt-6">
@@ -42,7 +44,7 @@ export default function KonselingKelasDetail() {
             <button
               className="relative rounded-full border border-blue-900 bg-blue-50 px-3 py-0.5 text-[10px] font-medium text-blue-900 hover:bg-blue-100"
               onClick={() => {
-                // TODO: navigate ke halaman catatan siswa
+                navigate(`/guruBK/konseling/siswa/${siswa.id}`);
               }}
             >
               Lihat catatan
