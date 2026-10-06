@@ -1,6 +1,7 @@
 import type { featureType } from "./types";
 import {
   adminFeatures,
+  guruBKFeatures,
   guruMapelFeatures,
   guruWaliFeatures,
   siswaFeatures,
@@ -12,6 +13,8 @@ export function gridFeaturesSwitcher(userRole: string): featureType[] {
       return siswaFeatures;
     case "guruMapel":
       return guruMapelFeatures;
+    case "guruBK":
+      return guruBKFeatures;    
     case "guruWali":
       return guruWaliFeatures;
     case "admin":

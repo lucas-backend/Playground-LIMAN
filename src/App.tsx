@@ -31,7 +31,7 @@ import CatatanKonselingWali from "./features/guruWali/konselingWali/CatatanKonse
 import CatatanKonselingWaliTindakLanjut from "./features/guruWali/konselingWali/CatatanKonselingWaliTindakLanjut";
 import LatihanSoalGuru from "./features/guru/LatihanSoal/LatihanSoalGuru";
 import TambahSoalLatihan from "./features/guru/LatihanSoal/TambahSoalLatihan";
-import EditSoalGuru from "./features/guru/LatihanSoal/EditSoalGuru";
+import EditSoalGuru from "./features/guru/LatihanSoal/EditSoalGuru"; 
 import BankSoalGuru from "./features/guru/LatihanSoal/BankSoalGuru";
 import BankSoalGuruMapel from "./features/guru/LatihanSoal/BankSoalGuruMapel";
 import BankSoalGuruMapelSoal from "./features/guru/LatihanSoal/BankSoalGuruMapelSoal";
@@ -54,6 +54,9 @@ import GuruPenilaianKelasSiswaRekap from "./features/guru/Penilaian/GuruPenilaia
 import Koreksi from "./features/guru/Koreksi/Koreksi";
 import KoreksiSiswa from "./features/guru/Koreksi/KoreksiSiswa";
 import KoreksiSiswaPertanyaan from "./features/guru/Koreksi/KoreksiSiswaPertanyaan";
+import Konseling from "./features/guruBK/Konseling/Konseling";
+import Rekap from "./features/guruBK/Rekap/Rekap";
+import MinatBakat from "./features/guruBK/MinatBakat/MinatBakat";
 
 export default function App() {
   return (
@@ -218,6 +221,11 @@ export default function App() {
         <Route path="/guru/koreksi/:soal_id" element={<Koreksi />} />
         <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id" element={<KoreksiSiswa/>}/>
         <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id/pertanyaan/:pertanyaan_id" element={<KoreksiSiswaPertanyaan/>}/>
+        {/* ========================= */}
+
+        <Route path="/guruBK/konseling*" element={<Konseling/>}/>
+        <Route path="/guruBK/rekap*" element={<Rekap/>}/>
+        <Route path="/guruBK/minatBakat*" element={<MinatBakat/>}/>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

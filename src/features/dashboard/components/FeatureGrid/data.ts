@@ -10,6 +10,7 @@ import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import AssignmentLateIcon from "@mui/icons-material/AssignmentLate";
 
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
+import CreateIcon from '@mui/icons-material/Create';
 import type { featureType } from "./types";
 
 // Data
@@ -83,6 +84,27 @@ export const guruWaliFeatures: featureType[] = [
     icon: AssignmentLateIcon,
   },
 ];
+
+import DescriptionIcon from '@mui/icons-material/Description';
+import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
+
+export const guruBKFeatures: featureType[] = [
+  {
+    name: "Konseling",
+    link: "/guruBK/konseling",
+    icon: CreateIcon,
+  },
+  {
+    name: "Rekap",
+    link: "/guruBK/rekap",
+    icon: DescriptionIcon,
+  },
+  {
+    name: "Minat Bakat",
+    link: "/guruBK/minatBakat",
+    icon: EmojiObjectsIcon,
+  },
+]
 
 export const guruMapelFeatures: featureType[] = [
   {
