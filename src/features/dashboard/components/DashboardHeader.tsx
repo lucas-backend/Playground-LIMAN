@@ -1,6 +1,7 @@
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
 import XPadding from "../../../components/XPadding";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   user: {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function DashboardHeader({ user }: Props) {
+  const navigate = useNavigate();
   return (
     <XPadding>
       <div className="flex items-center justify-between text-white">
@@ -29,6 +31,9 @@ export default function DashboardHeader({ user }: Props) {
         <button
           type="button"
           className="bg-white h-8 w-8 flex items-center justify-center rounded-full cursor-pointer"
+          onClick={() => {
+            navigate("/notifikasi");
+          }}
         >
           <NotificationsNoneRoundedIcon className="h-6! w-6! text-blue-400" />
         </button>
