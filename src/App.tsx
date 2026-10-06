@@ -58,6 +58,7 @@ import Konseling from "./features/guruBK/Konseling/Konseling";
 import Rekap from "./features/guruBK/Rekap/Rekap";
 import MinatBakat from "./features/guruBK/MinatBakat/MinatBakat";
 import HalamanNotifikasi from "./features/notifikasi/HalamanNotifikasi";
+import AdminDashboard from "./features/admin/AdminDashboard";
 
 export default function App() {
   return (
@@ -228,6 +229,8 @@ export default function App() {
         <Route path="/guruBK/rekap/*" element={<Rekap/>}/>
         <Route path="/rekap/*" element={<Rekap/>}/>
         <Route path="/guruBK/minatBakat/*" element={<MinatBakat/>}/>
+
+        <Route path="/admin/*" element={<AdminDashboard/>}/>
 
         <Route path="/notifikasi" element={<HalamanNotifikasi/>}/>
         <Route path="*" element={<NotFound />} />
