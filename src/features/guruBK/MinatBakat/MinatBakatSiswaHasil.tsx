@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 
 const snbp = [
   { univ: "UI", sekarang: 90, snbp: 90, target: 97 },

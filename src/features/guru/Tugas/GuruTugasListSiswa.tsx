@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import {
   getMapel,
   getNilaiTugas,
@@ -11,7 +11,7 @@ import {
 import InfoTugas from "./components/InfoTugas";
 import BarisSiswa from "./components/BarisSiswa";
 import ModalNilai from "./components/ModalNilai";
-import Header from "../../../components/Header";
+import Header from "@/shared/components/layout/Header";
 
 // Route: /guru/tugas/:mapel_id/listSiswa/:tugas_id
 export default function GuruTugasListSiswa() {

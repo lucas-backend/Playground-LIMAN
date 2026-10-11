@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import XPadding from "./XPadding";
 import { useLocation, useNavigate, matchPath } from "react-router-dom";
@@ -12,9 +12,20 @@ export default function Header({ title, backLink }: Props) {
   const navigate = useNavigate();
   const location = useLocation();
   const [showPopup, setShowPopup] = useState(false);
+  const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Cek apakah user sedang berada di rute /quiz/:id/*
-  const isQuizRoute = matchPath({ path: "/quiz/:id/*" }, location.pathname);
+  // Cek apakah user sedang berada di rute /quiz/:quiz_id/*
+  const isQuizRoute = matchPath({ path: "/quiz/:quiz_id/*" }, location.pathname);
+
+  useEffect(() => {
+    if (!showPopup) return;
+    confirmButtonRef.current?.focus();
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setShowPopup(false);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showPopup]);
 
   function handleBackClick() {
     if (isQuizRoute) {
@@ -35,7 +46,12 @@ export default function Header({ title, backLink }: Props) {
         <XPadding>
           <div className="relative flex justify-center items-center">
             {/* Back Button */}
-            <button className="absolute left-0" onClick={handleBackClick}>
+            <button
+              type="button"
+              aria-label="Kembali"
+              className="absolute left-0"
+              onClick={handleBackClick}
+            >
               <ArrowBackRoundedIcon className="w-6! h-6!" />
             </button>
 
@@ -48,10 +64,18 @@ export default function Header({ title, backLink }: Props) {
       {/* Pop-up Modal Sesuai Desain Gambar */}
       {showPopup && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-sm w-full overflow-hidden flex flex-col justify-between min-h-[180px]">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="header-confirm-title"
+            className="bg-white rounded-lg max-w-sm w-full overflow-hidden flex flex-col justify-between min-h-[180px]"
+          >
             {/* Konten Teks */}
             <div className="flex-1 flex items-center justify-center p-6 text-center">
-              <p className="text-gray-900 text-lg tracking-wide">
+              <p
+                id="header-confirm-title"
+                className="text-gray-900 text-lg tracking-wide"
+              >
                 Apakah anda yakin ingin keluar?
               </p>
             </div>
@@ -60,6 +84,8 @@ export default function Header({ title, backLink }: Props) {
             <div className="flex w-full h-12 text-white">
               {/* Tombol Tidak (Merah) */}
               <button
+                ref={confirmButtonRef}
+                type="button"
                 onClick={() => setShowPopup(false)}
                 className="flex-1 bg-red-500 flex items-center justify-center"
               >
@@ -67,6 +93,7 @@ export default function Header({ title, backLink }: Props) {
               </button>
               {/* Tombol Ya (Hijau) */}
               <button
+                type="button"
                 onClick={() => {
                   setShowPopup(false);
                   executeNavigation();

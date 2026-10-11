@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 
-import Header from "../../components/Header";
-import XPadding from "../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import { mapelLatihan } from "./data";
 import { latihanSoalMapel } from "./data";
-import QuizItemCard from "../../components/QuizItemCard";
+import QuizItemCard from "@/shared/components/ui/QuizItemCard";
 
 export default function LatihanSoalMapel() {
   const { id } = useParams();

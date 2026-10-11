@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Header from "../../components/Header";
+import Header from "@/shared/components/layout/Header";
 import JadwalTab from "./components/sectionPelajaran/PelajaranTab";
 import TryoutTab from "./components/sectionTryout/TryoutTab";
 import UjianTab from "./components/sectionUjian/UjianTab";
 import { jadwalPelajaranTabs } from "../../data/jadwal/jadwalData";
 import JadwalTabs from "./components/JadwalTabs";
-import XPadding from "../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 
 export default function Jadwal() {
   return (

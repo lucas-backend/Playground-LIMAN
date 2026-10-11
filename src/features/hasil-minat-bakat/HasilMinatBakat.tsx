@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Header from "../../components/Header";
-import XPadding from "../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 
 import HistoryIcon from "@mui/icons-material/History";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";

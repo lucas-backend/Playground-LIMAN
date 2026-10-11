@@ -4,7 +4,9 @@ import Dashboard from "@/features/dashboard/Dashboard";
 import Jadwal from "@/features/jadwal/Jadwal";
 import Login from "@/features/login/Login";
 import Quiz from "@/features/quiz/Quiz";
-import NotFound from "@/pages/NotFound";
+import NotFound from "@/shared/pages/NotFound";
+import ProtectedLayout from "@/shared/layouts/ProtectedLayout";
+import PublicLayout from "@/shared/layouts/PublicLayout";
 import LatihanSoal from "@/features/latihan-soal/LatihanSoal";
 import LatihanSoalMapel from "@/features/latihan-soal/LatihanSoalMapel";
 import QuizResult from "@/features/quiz-result/QuizResult";
@@ -39,9 +41,10 @@ import BankSoalGuruMapelSoalDetail from "@/features/guru/LatihanSoal/BankSoalGur
 import UjianSoalGuru from "@/features/guru/Ujian/UjianSoalGuru";
 import TambahSoalUjian from "@/features/guru/Ujian/TambahSoalUjian";
 import EditSoalUjianGuru from "@/features/guru/Ujian/EditSoalUjianGuru";
+import BankSoalUjianGuru from "@/features/guru/Ujian/BankSoalUjianGuru";
 import BankSoalUjianGuruMapel from "@/features/guru/Ujian/BankSoalUjianGuruMapel";
-import BankSoalUjianGuruMapelSoal from "@/features/guru/Ujian/BankSoalUjianGuruMapel";
-import BankSoalUjianGuruMapelSoalDetail from "@/features/guru/Ujian/BankSoalUjianGuruMapel";
+import BankSoalUjianGuruMapelSoal from "@/features/guru/Ujian/BankSoalUjianGuruMapelSoal";
+import BankSoalUjianGuruMapelSoalDetail from "@/features/guru/Ujian/BankSoalUjianGuruMapelSoalDetail";
 import GuruTugas from "@/features/guru/Tugas/GuruTugas";
 import GuruPenilaian from "@/features/guru/Penilaian/GuruPenilaian";
 import GuruRemedial from "@/features/guru/Remedial/GuruRemedial";
@@ -63,175 +66,183 @@ import AdminDashboard from "@/features/admin/AdminDashboard";
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/quiz/:quiz_id/*" element={<Quiz />} />
-      <Route path="/jadwal-siswa/*" element={<Jadwal />} />
-      <Route path="/latihan-soal" element={<LatihanSoal />} />
-      <Route
-        path="/latihan-soal/mapel/:mapel_id"
-        element={<LatihanSoalMapel />}
-      />
-      <Route path="/quiz_result/:quiz_result_id" element={<QuizResult />} />
-      <Route
-        path="/quiz_result/:id/details"
-        element={<QuizResultDetails />}
-      />
-      <Route path="/riwayat/*" element={<RiwayatQuiz />} />
-      <Route path="/passing_grade" element={<PassingGrade />} />
-      <Route
-        path="/passing_grade/:passing_grade_id"
-        element={<PassingGradeUniv />}
-      />
-      <Route
-        path="/hasil_minat_bakat/:quiz_minat_bakat_id"
-        element={<HasilMinatBakat />}
-      />
-      <Route
-        path="/hasil_minat_bakat/:id/jurusan/:id_jurusan"
-        element={<HasilMinatBakatJurusan />}
-      />
-      <Route
-        path="/hasil_minat_bakat/:id/tambah_jurusan"
-        element={<TambahTargetJurusanLain />}
-      />
-      <Route path="/guruMapel/absensi" element={<Absensi />} />
-      <Route path="/guruMapel/absensi/:kelas_id" element={<AbsensiKelas />} />
-      <Route
-        path="/guruMapel/absensi/:kelas_id/pertemuan/:pertemuan_id"
-        element={<AbsensiPertemuan />}
-      />
+      {/* =============================== Publik =============================== */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+      </Route>
 
-      <Route path="/detail/siswa/:id" element={<DetailSiswa />} />
-      <Route path="/guruWali/absensi/:kelas_id" element={<MenuWaliKelas />} />
-      <Route
-        path="/guruWali/absensi/siswa/:siswa_id"
-        element={<AbsensiWaliDetailSiswa />}
-      />
-      <Route
-        path="/guruWali/absensi/siswa/:siswa_id/detail/"
-        element={<AbsensiWaliDetailSiswaDetailHari />}
-      />
-      <Route
-        path="/guruWali/rapot/siswa/:siswa_id"
-        element={<RapotSiswaWali />}
-      />
+      {/* =============================== Terproteksi =============================== */}
+      <Route element={<ProtectedLayout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/quiz/:quiz_id/*" element={<Quiz />} />
+        <Route path="/jadwal-siswa/*" element={<Jadwal />} />
+        <Route path="/latihan-soal" element={<LatihanSoal />} />
+        <Route
+          path="/latihan-soal/mapel/:mapel_id"
+          element={<LatihanSoalMapel />}
+        />
+        <Route path="/quiz_result/:quiz_result_id" element={<QuizResult />} />
+        <Route
+          path="/quiz_result/:id/details"
+          element={<QuizResultDetails />}
+        />
+        <Route path="/riwayat/*" element={<RiwayatQuiz />} />
+        <Route path="/passing_grade" element={<PassingGrade />} />
+        <Route
+          path="/passing_grade/:passing_grade_id"
+          element={<PassingGradeUniv />}
+        />
+        <Route
+          path="/hasil_minat_bakat/:quiz_minat_bakat_id"
+          element={<HasilMinatBakat />}
+        />
+        <Route
+          path="/hasil_minat_bakat/:id/jurusan/:id_jurusan"
+          element={<HasilMinatBakatJurusan />}
+        />
+        <Route
+          path="/hasil_minat_bakat/:id/tambah_jurusan"
+          element={<TambahTargetJurusanLain />}
+        />
+        <Route path="/guruMapel/absensi" element={<Absensi />} />
+        <Route path="/guruMapel/absensi/:kelas_id" element={<AbsensiKelas />} />
+        <Route
+          path="/guruMapel/absensi/:kelas_id/pertemuan/:pertemuan_id"
+          element={<AbsensiPertemuan />}
+        />
 
-      <Route
-        path="/guruWali/rapot/siswa/:siswa_id/mapel/:mapel_id"
-        element={<RapotSiswaWaliDetailNilai />}
-      />
-      <Route
-        path="/guruWali/rapot/absensi/siswa/:siswa_id"
-        element={<RapotAbsensi />}
-      />
-      <Route
-        path="/guruWali/rapot/absensi/siswa/:siswa_id/materi/:materi_id"
-        element={<RapotAbsensiMateri />}
-      />
+        <Route path="/detail/siswa/:id" element={<DetailSiswa />} />
+        <Route path="/guruWali/absensi/:kelas_id" element={<MenuWaliKelas />} />
+        <Route
+          path="/guruWali/absensi/siswa/:siswa_id"
+          element={<AbsensiWaliDetailSiswa />}
+        />
+        <Route
+          path="/guruWali/absensi/siswa/:siswa_id/detail/"
+          element={<AbsensiWaliDetailSiswaDetailHari />}
+        />
+        <Route
+          path="/guruWali/rapot/siswa/:siswa_id"
+          element={<RapotSiswaWali />}
+        />
 
-      <Route
-        path="/guruWali/konseling/siswa/:siswa_id"
-        element={<KonselingWali />}
-      />
-      <Route
-        path="/guruWali/konseling/siswa/:siswa_id/catatan"
-        element={<CatatanKonselingWali />}
-      />
-      <Route
-        path="/guruWali/konseling/siswa/:siswa_id/tindakLanjut/:id_catatan_bk"
-        element={<CatatanKonselingWaliTindakLanjut />}
-      />
+        <Route
+          path="/guruWali/rapot/siswa/:siswa_id/mapel/:mapel_id"
+          element={<RapotSiswaWaliDetailNilai />}
+        />
+        <Route
+          path="/guruWali/rapot/absensi/siswa/:siswa_id"
+          element={<RapotAbsensi />}
+        />
+        <Route
+          path="/guruWali/rapot/absensi/siswa/:siswa_id/materi/:materi_id"
+          element={<RapotAbsensiMateri />}
+        />
 
-      {/* =============================== Latihan Soal =============================== */}
-      <Route path="/guru/latihanSoal" element={<LatihanSoalGuru />} />
-      <Route
-        path="/guru/latihanSoal/tambahSoal"
-        element={<TambahSoalLatihan />}
-      />
-      <Route
-        path="/guru/latihanSoal/editSoal/:id_soal/soal/:id_pertanyaan"
-        element={<EditSoalGuru />}
-      />
-      <Route path="/guru/latihanSoal/bankSoal" element={<BankSoalGuru />} />
-      <Route
-        path="/guru/latihanSoal/bankSoal/:mapel_id"
-        element={<BankSoalGuruMapel />}
-      />
-      <Route
-        path="/guru/latihanSoal/bankSoal/:mapel_id/soal/:soal_id"
-        element={<BankSoalGuruMapelSoal />}
-      />
-      <Route
-        path="/guru/latihanSoal/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
-        element={<BankSoalGuruMapelSoalDetail />}
-      />
+        <Route
+          path="/guruWali/konseling/siswa/:siswa_id"
+          element={<KonselingWali />}
+        />
+        <Route
+          path="/guruWali/konseling/siswa/:siswa_id/catatan"
+          element={<CatatanKonselingWali />}
+        />
+        <Route
+          path="/guruWali/konseling/siswa/:siswa_id/tindakLanjut/:id_catatan_bk"
+          element={<CatatanKonselingWaliTindakLanjut />}
+        />
 
-      {/* =============================== UJIAN =============================== */}
-      <Route path="/guru/ujian/" element={<UjianSoalGuru />} />
-      <Route path="/guru/ujian/tambahSoal" element={<TambahSoalUjian />} />
-      <Route
-        path="/guru/ujian/editSoal/:id_soal/soal/:id_pertanyaan"
-        element={<EditSoalUjianGuru />}
-      />
-      <Route path="/guru/ujian/bankSoal" element={<BankSoalGuru />} />
-      <Route
-        path="/guru/ujian/bankSoal/:mapel_id"
-        element={<BankSoalUjianGuruMapel />}
-      />
-      <Route
-        path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id"
-        element={<BankSoalUjianGuruMapelSoal />}
-      />
-      <Route
-        path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
-        element={<BankSoalUjianGuruMapelSoalDetail />}
-      />
+        {/* =============================== Latihan Soal =============================== */}
+        <Route path="/guru/latihanSoal" element={<LatihanSoalGuru />} />
+        <Route
+          path="/guru/latihanSoal/tambahSoal"
+          element={<TambahSoalLatihan />}
+        />
+        <Route
+          path="/guru/latihanSoal/editSoal/:id_soal/soal/:id_pertanyaan"
+          element={<EditSoalGuru />}
+        />
+        <Route path="/guru/latihanSoal/bankSoal" element={<BankSoalGuru />} />
+        <Route
+          path="/guru/latihanSoal/bankSoal/:mapel_id"
+          element={<BankSoalGuruMapel />}
+        />
+        <Route
+          path="/guru/latihanSoal/bankSoal/:mapel_id/soal/:soal_id"
+          element={<BankSoalGuruMapelSoal />}
+        />
+        <Route
+          path="/guru/latihanSoal/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
+          element={<BankSoalGuruMapelSoalDetail />}
+        />
 
-      {/* ========================= */}
-      <Route path="/guru/tugas" element={<GuruTugas />} />
-      <Route path="/guru/tugas/:mapel_id" element={<GuruTugasMapel />} />
-      <Route
-        path="/guru/tugas/:mapel_id/tambahTugas"
-        element={<GuruTugasTambahTugas />}
-      />
-      <Route
-        path="/guru/tugas/:mapel_id/listSiswa/:tugas_id"
-        element={<GuruTugasListSiswa />}
-      />
+        {/* =============================== UJIAN =============================== */}
+        <Route path="/guru/ujian/" element={<UjianSoalGuru />} />
+        <Route path="/guru/ujian/tambahSoal" element={<TambahSoalUjian />} />
+        <Route
+          path="/guru/ujian/editSoal/:id_soal/soal/:id_pertanyaan"
+          element={<EditSoalUjianGuru />}
+        />
+        <Route path="/guru/ujian/bankSoal" element={<BankSoalUjianGuru />} />
+        <Route
+          path="/guru/ujian/bankSoal/:mapel_id"
+          element={<BankSoalUjianGuruMapel />}
+        />
+        <Route
+          path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id"
+          element={<BankSoalUjianGuruMapelSoal />}
+        />
+        <Route
+          path="/guru/ujian/bankSoal/:mapel_id/soal/:soal_id/detail/:pertanyaan_id"
+          element={<BankSoalUjianGuruMapelSoalDetail />}
+        />
 
-      {/* ========================= */}
-      <Route path="/guru/penilaian" element={<GuruPenilaian />} />
-      <Route
-        path="/guru/penilaian/kelas/:kelas_id"
-        element={<GuruPenilaianKelas />}
-      />
-      <Route
-        path="/guru/penilaian/:kelas_id/siswa/:siswa_id"
-        element={<GuruPenilaianKelasSiswa />}
-      />
-      <Route
-        path="/guru/penilaian/:kelas_id/siswa/:siswa_id/rekap"
-        element={<GuruPenilaianKelasSiswaRekap />}
-      />
+        {/* ========================= */}
+        <Route path="/guru/tugas" element={<GuruTugas />} />
+        <Route path="/guru/tugas/:mapel_id" element={<GuruTugasMapel />} />
+        <Route
+          path="/guru/tugas/:mapel_id/tambahTugas"
+          element={<GuruTugasTambahTugas />}
+        />
+        <Route
+          path="/guru/tugas/:mapel_id/listSiswa/:tugas_id"
+          element={<GuruTugasListSiswa />}
+        />
 
-      {/* ========================= */}
-      <Route path="/guru/remedial" element={<GuruRemedial />} />
+        {/* ========================= */}
+        <Route path="/guru/penilaian" element={<GuruPenilaian />} />
+        <Route
+          path="/guru/penilaian/kelas/:kelas_id"
+          element={<GuruPenilaianKelas />}
+        />
+        <Route
+          path="/guru/penilaian/:kelas_id/siswa/:siswa_id"
+          element={<GuruPenilaianKelasSiswa />}
+        />
+        <Route
+          path="/guru/penilaian/:kelas_id/siswa/:siswa_id/rekap"
+          element={<GuruPenilaianKelasSiswaRekap />}
+        />
 
-      <Route path="/guru/koreksi/:soal_id" element={<Koreksi />} />
-      <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id" element={<KoreksiSiswa/>}/>
-      <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id/pertanyaan/:pertanyaan_id" element={<KoreksiSiswaPertanyaan/>}/>
-      {/* ========================= */}
+        {/* ========================= */}
+        <Route path="/guru/remedial" element={<GuruRemedial />} />
 
-      <Route path="/guruBK/konseling/*" element={<Konseling/>}/>
-      <Route path="/guruBK/rekap/*" element={<Rekap/>}/>
-      <Route path="/rekap/*" element={<Rekap/>}/>
-      <Route path="/guruBK/minatBakat/*" element={<MinatBakat/>}/>
+        <Route path="/guru/koreksi/:soal_id" element={<Koreksi />} />
+        <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id" element={<KoreksiSiswa/>}/>
+        <Route path="/guru/koreksi/:soal_id/siswa/:siswa_id/pertanyaan/:pertanyaan_id" element={<KoreksiSiswaPertanyaan/>}/>
+        {/* ========================= */}
 
-      <Route path="/admin/*" element={<AdminDashboard/>}/>
+        <Route path="/guruBK/konseling/*" element={<Konseling/>}/>
+        <Route path="/guruBK/rekap/*" element={<Rekap/>}/>
+        <Route path="/rekap/*" element={<Rekap/>}/>
+        <Route path="/guruBK/minatBakat/*" element={<MinatBakat/>}/>
 
-      <Route path="/notifikasi" element={<HalamanNotifikasi/>}/>
+        <Route path="/admin/*" element={<AdminDashboard/>}/>
+
+        <Route path="/notifikasi" element={<HalamanNotifikasi/>}/>
+      </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

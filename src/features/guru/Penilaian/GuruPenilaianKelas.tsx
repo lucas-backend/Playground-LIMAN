@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
-import NilaiBadge from "../../../components/NilaiBadge";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
+import NilaiBadge from "@/shared/components/ui/NilaiBadge";
 import { dummyKelas, dummySiswa, lulus } from "./data";
 
 export default function GuruPenilaianKelas() {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import {
   catatanBkDummy,
   catatanWaliDummy,

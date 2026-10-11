@@ -1,8 +1,8 @@
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../../components/Header";
-import XPadding from "../../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import { Badge, CetakButton } from "../shared";
 import { REKAP_BASE } from "../shared.constants";
 

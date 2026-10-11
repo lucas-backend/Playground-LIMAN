@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode } from "react";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 
 /* ---------- tipe ---------- */
 type TipeSoal = "pg" | "pgk" | "bs" | "essay";

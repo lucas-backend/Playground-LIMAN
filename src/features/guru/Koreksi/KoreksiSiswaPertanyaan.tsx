@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
-import { IconBenar, IconSalah } from "../../../components/IconNilai";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
+import { IconBenar, IconSalah } from "@/shared/components/ui/IconNilai";
 import { dummyJawabanPG, dummyPertanyaan } from "./koreksiData";
 
 type Hasil = "benar" | "salah";

@@ -1,6 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 
 type Kelas = {
   id: string;

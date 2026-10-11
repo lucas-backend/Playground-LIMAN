@@ -1,10 +1,10 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { getMapelList, getTugasByMapel, tambahTugas } from "./TugasData";
 import FieldForm, { kelasInput } from "./components/FieldForm";
 import TombolBiru from "./components/TombolBiru";
-import Header from "../../../components/Header";
+import Header from "@/shared/components/layout/Header";
 
 // Route: /guru/tugas/:mapel_id/tambahTugas
 export default function GuruTugasTambahTugas() {

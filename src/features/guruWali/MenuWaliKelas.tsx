@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Header from "../../components/Header";
-import XPadding from "../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 
 // Import Ikon Material UI
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";

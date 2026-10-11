@@ -1,5 +1,5 @@
 import { useState } from "react";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { useNavigate } from "react-router-dom";
 
 type Pertemuan = {

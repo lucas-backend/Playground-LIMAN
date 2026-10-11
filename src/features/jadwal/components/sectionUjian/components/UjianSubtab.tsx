@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import QuizItemCard from "../../../../../components/QuizItemCard";
+import QuizItemCard from "@/shared/components/ui/QuizItemCard";
 
 const ujianSubTab = [
   { name: "Ulangan Harian", link: "/jadwal-siswa/ujian/ulangan-harian" },

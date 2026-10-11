@@ -1,5 +1,5 @@
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import { useNavigate } from "react-router-dom";
 
 // Data nilai yang dikelompokkan berdasarkan kategori sesuai gambar

@@ -1,6 +1,6 @@
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
@@ -30,6 +30,7 @@ export default function DashboardHeader({ user }: Props) {
         {/* Notification */}
         <button
           type="button"
+          aria-label="Buka notifikasi"
           className="bg-white h-8 w-8 flex items-center justify-center rounded-full cursor-pointer"
           onClick={() => {
             navigate("/notifikasi");

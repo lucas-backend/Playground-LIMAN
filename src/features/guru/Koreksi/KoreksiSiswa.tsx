@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import TabKoreksi from "./TabKoreksi";
 import { dummyPertanyaan, type TabKey } from "./koreksiData";
 

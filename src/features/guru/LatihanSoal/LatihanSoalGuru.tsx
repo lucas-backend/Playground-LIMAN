@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import FeedIcon from '@mui/icons-material/Feed';
 import TimerIcon from '@mui/icons-material/Timer';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';

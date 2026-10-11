@@ -1,6 +1,6 @@
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import RekapAbsen from "./Absen/RekapAbsen";
 import RekapAbsenKelasList from "./Absen/RekapAbsenKelasList";
 import RekapAbsenKelas from "./Absen/RekapAbsenKelas";

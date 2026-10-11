@@ -1,5 +1,5 @@
-import Header from "../../../components/Header";
-import XPadding from "../../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"; // Ikon WA untuk hubungi siswa/ortu
 import PlayArrowIcon from "@mui/icons-material/PlayArrow"; // Ikon panah abu-abu di list
 import { useNavigate } from "react-router-dom";

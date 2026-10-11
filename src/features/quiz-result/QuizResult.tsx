@@ -1,6 +1,6 @@
-import Header from "../../components/Header";
+import Header from "@/shared/components/layout/Header";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import XPadding from "../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { QuizResultCard } from "./QuizResultCard";
 import { AnswerDetailGrid, type AnswerItem } from "./QuizResultDetailGrid";
 

@@ -1,4 +1,4 @@
-import AdSlider from "../../components/AdSlider";
+import AdSlider from "@/shared/components/ui/AdSlider";
 import SearchBar from "./components/SearchBar";
 import DashboardHeader from "./components/DashboardHeader";
 import StatusAbsen from "./components/StatusAbsen";
@@ -8,7 +8,7 @@ import { gridFeaturesSwitcher } from "./components/FeatureGrid/utils";
 
 // import BottomNav from "./components/BottomNav/BottomNav";
 // import { menuSwitcher } from "./components/BottomNav/utils";
-import XPadding from "../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { userData } from "./data.mock";
 
 const user = userData;

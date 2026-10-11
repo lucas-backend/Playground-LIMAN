@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Header from "../../../components/Header";
+import Header from "@/shared/components/layout/Header";
 import KonselingKelasList from "./KonselingKelasList";
 import KonselingKelasDetail from "./KonselingKelasDetail";
 import KonselingSiswaDetail from "./KonselingSiswaDetail";

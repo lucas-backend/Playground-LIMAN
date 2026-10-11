@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Header from "../../components/Header";
-import XPadding from "../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useNavigate } from "react-router-dom";

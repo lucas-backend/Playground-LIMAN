@@ -1,5 +1,5 @@
 import { useState } from "react";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const listSiswaAwal = [

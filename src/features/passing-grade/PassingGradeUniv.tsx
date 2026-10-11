@@ -1,5 +1,5 @@
-import Header from "../../components/Header";
-import XPadding from "../../components/XPadding";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
 
 const MAJORS = [
   { name: "Jurusan A", passingGrade: 78, capacity: 78, tightness: 78 },

@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { getMapel, getTugasByMapel } from "./TugasData";
 import BannerMapel from "./components/BannerMapel";
 import KartuTugas from "./components/KartuTugas";
 import TombolBiru from "./components/TombolBiru";
-import Header from "../../../components/Header";
+import Header from "@/shared/components/layout/Header";
 
 // Route: /guru/tugas/:mapel_id
 export default function GuruTugasMapel() {

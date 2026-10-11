@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import XPadding from "../../../components/XPadding";
-import NilaiBadge from "../../../components/NilaiBadge";
+import XPadding from "@/shared/components/layout/XPadding";
+import NilaiBadge from "@/shared/components/ui/NilaiBadge";
 import { dummyKelas, dummyRincian, dummySiswa, lulus } from "./data";
 
 function Baris({ nama, nilai }: { nama: string; nilai: number }) {

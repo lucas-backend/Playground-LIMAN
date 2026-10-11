@@ -6,6 +6,7 @@ export default function SearchBar() {
         <SearchRoundedIcon className="w-6! h-6! flex justify-center items-center" />
         <input
           type="search"
+          aria-label="Cari Fitur"
           placeholder="Cari Fitur"
           className="text-black focus:outline-none ml-2 flex-1 bg-transparent"
         />

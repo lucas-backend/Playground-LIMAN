@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../../components/Header";
-import XPadding from "../../../../components/XPadding";
-import KelasCard from "../../../../components/KelasCard";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
+import KelasCard from "@/shared/components/ui/KelasCard";
 import { REKAP_BASE } from "../shared.constants";
 
 export default function RekapNilaiKelasList() {

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import XPadding from "../../../../components/XPadding";
-import KelasCard from "../../../../components/KelasCard";
+import XPadding from "@/shared/components/layout/XPadding";
+import KelasCard from "@/shared/components/ui/KelasCard";
 import { REKAP_BASE } from "../shared.constants";
 
 const jenjangList = [

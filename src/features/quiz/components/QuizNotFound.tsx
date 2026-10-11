@@ -1,4 +1,4 @@
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 
 export default function QuizNotFound() {
   return (

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import XPadding from "../../../components/XPadding";
+import XPadding from "@/shared/components/layout/XPadding";
 
 export function Badge({
   children,

@@ -1,6 +1,6 @@
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
-import Button from "../../components/Button";
-import XPadding from "../../components/XPadding";
+import Button from "@/shared/components/ui/Button";
+import XPadding from "@/shared/components/layout/XPadding";
 import { useNavigate } from "react-router-dom";
 
 const appName = "LIMAN";
