@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import type { JadwalTab } from "../../../types/jadwal";
+import type { JadwalTab } from "../model/jadwal";
 
 interface Props {
   tabs: JadwalTab[];

@@ -5,8 +5,9 @@ import { useSession } from "@/shared/session/session";
 
 // Host untuk route terautentikasi. Guard di sini hanya UX (ADR-004);
 // otorisasi otoritatif tetap di backend (NFR-SEC-002).
-// Backend sesi belum tersedia sehingga status saat ini "unavailable":
-// guard belum menolak akses. Pengalihan ke /login diaktifkan pada fase auth (F4).
+// Status awal sesi "unauthenticated" sampai login (fase auth). Sesi masih
+// in-memory karena bootstrap `/auth/me` belum tersedia, jadi muat ulang
+// mengembalikan pengguna ke /login.
 export default function ProtectedLayout() {
   const { status } = useSession();
   const location = useLocation();

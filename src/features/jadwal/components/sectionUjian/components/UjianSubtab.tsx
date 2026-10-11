@@ -1,149 +1,88 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
+import EmptyState from "@/shared/components/state/EmptyState";
+import ErrorState from "@/shared/components/state/ErrorState";
 import QuizItemCard from "@/shared/components/ui/QuizItemCard";
 
-const ujianSubTab = [
+import { useJadwalUjian } from "../../../hooks/useJadwal";
+
+const ujianSubtabs = [
   { name: "Ulangan Harian", link: "/jadwal-siswa/ujian/ulangan-harian" },
   { name: "PTS", link: "/jadwal-siswa/ujian/pts" },
   { name: "PAS", link: "/jadwal-siswa/ujian/pas" },
 ];
 
-const listJadwal = [
-  {
-    name: "Ulangan Harian",
-    topic: "Bahasa Inggris",
-    status: 1,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "Ulangan Harian",
-    topic: "Matematika",
-    status: 2,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "Ulangan Harian",
-    topic: "Biologi",
-    status: 3,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PTS",
-    topic: "Biologi",
-    status: 1,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PTS",
-    topic: "Matematika",
-    status: 2,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PTS",
-    topic: "Bahasa Inggris",
-    status: 3,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PAS",
-    topic: "Bahasa Inggris",
-    status: 1,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PAS",
-    topic: "Kimia",
-    status: 2,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PAS",
-    topic: "Matematika",
-    status: 3,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-];
+const targetByPath: Record<string, string> = {
+  "ulangan-harian": "Ulangan Harian",
+  pts: "PTS",
+  pas: "PAS",
+};
 
 export default function UjianSubtab() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { state, reload } = useJadwalUjian();
 
   const lastPath = location.pathname.split("/").pop();
-  let itemTarget: string;
+  const itemTarget = lastPath ? targetByPath[lastPath] : undefined;
 
-  if (lastPath == "ulangan-harian") itemTarget = "Ulangan Harian";
-  if (lastPath == "pts") itemTarget = "PTS";
-  if (lastPath == "pas") itemTarget = "PAS";
+  const items =
+    state.status === "ready"
+      ? state.data.filter((item) => item.name === itemTarget)
+      : [];
 
   return (
     <>
       {/* Sub Tab Button */}
       <div className="mt-4 flex gap-2">
-        {ujianSubTab.map((item, index) => {
-          return (
-            <button
-              className={`rounded-full border border-black/15 justify-center flex-1 py-1 font-semibold ${index == 0 && "flex-2"} ${location.pathname == item.link && "bg-blue-400/25"} cursor-pointer hover:bg-blue-400/25`}
-              key={index}
-              onClick={() => navigate(item.link)}
-            >
-              {item.name}
-            </button>
-          );
-        })}
+        {ujianSubtabs.map((item, index) => (
+          <button
+            key={item.link}
+            type="button"
+            className={`flex-1 justify-center rounded-full border border-black/15 py-1 font-semibold ${index === 0 ? "flex-2" : ""} ${location.pathname === item.link ? "bg-blue-400/25" : ""} cursor-pointer hover:bg-blue-400/25`}
+            onClick={() => navigate(item.link)}
+          >
+            {item.name}
+          </button>
+        ))}
       </div>
 
       {/* List jadwal */}
-      <div className="flex flex-col gap-4 mt-4">
-        {listJadwal
-          .filter((item) => item.name == itemTarget)
-          .map((item, index) => (
-            <QuizItemCard item={item} key={index} />
-          ))}
+      <div className="mt-4 flex flex-col gap-4">
+        {state.status === "loading" ? (
+          <p role="status" className="text-sm text-slate-500">
+            Memuat jadwal…
+          </p>
+        ) : null}
+
+        {state.status === "error" ? (
+          <ErrorState
+            title="Gagal memuat jadwal ujian"
+            description="Periksa koneksi Anda lalu coba lagi."
+            action={
+              <button
+                type="button"
+                onClick={reload}
+                className="mt-2 text-sm font-medium text-brand-600 underline"
+              >
+                Coba lagi
+              </button>
+            }
+          />
+        ) : null}
+
+        {state.status === "ready" && items.length === 0 ? (
+          <EmptyState
+            title="Belum ada jadwal"
+            description="Jadwal untuk kategori ini belum tersedia."
+          />
+        ) : null}
+
+        {state.status === "ready"
+          ? items.map((item, index) => (
+              <QuizItemCard item={item} key={index} />
+            ))
+          : null}
       </div>
     </>
   );

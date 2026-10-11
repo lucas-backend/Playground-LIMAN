@@ -8,7 +8,7 @@ export default function StatusAbsen({ isPresent }: Props) {
       <div
         className={
           "rounded-full h-2 p-2 shrink-0 " +
-          (isPresent ? "bg-green-500" : "bg-red-500")
+          (isPresent ? "bg-success" : "bg-danger")
         }
       />
       <span className="pb-[3.5px]">

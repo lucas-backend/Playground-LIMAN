@@ -1,4 +1,4 @@
-import type { JadwalDate } from "../../../../types/jadwal";
+import type { JadwalDate } from "../../model/jadwal";
 
 interface Props {
   dates: readonly JadwalDate[];

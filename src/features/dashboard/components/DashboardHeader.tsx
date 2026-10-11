@@ -1,16 +1,14 @@
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 import PermIdentityRoundedIcon from "@mui/icons-material/PermIdentityRounded";
-import XPadding from "@/shared/components/layout/XPadding";
 import { useNavigate } from "react-router-dom";
 
+import XPadding from "@/shared/components/layout/XPadding";
+
 interface Props {
-  user: {
-    name: string;
-    role: string;
-  };
+  name: string;
 }
 
-export default function DashboardHeader({ user }: Props) {
+export default function DashboardHeader({ name }: Props) {
   const navigate = useNavigate();
   return (
     <XPadding>
@@ -18,12 +16,12 @@ export default function DashboardHeader({ user }: Props) {
         {/* Foto Profile + Profile + Welcome */}
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-white rounded-full flex justify-center items-center">
-            <PermIdentityRoundedIcon className="text-blue-500 w-9! h-9!" />
+            <PermIdentityRoundedIcon className="text-brand-500 w-9! h-9!" />
           </div>
 
           <div>
             <h3 className="font-bold text-xl">Hi, Welcome!</h3>
-            <p className="text-sm">{user.name}</p>
+            <p className="text-sm">{name}</p>
           </div>
         </div>
 
@@ -36,7 +34,7 @@ export default function DashboardHeader({ user }: Props) {
             navigate("/notifikasi");
           }}
         >
-          <NotificationsNoneRoundedIcon className="h-6! w-6! text-blue-400" />
+          <NotificationsNoneRoundedIcon className="h-6! w-6! text-brand-500" />
         </button>
       </div>
     </XPadding>

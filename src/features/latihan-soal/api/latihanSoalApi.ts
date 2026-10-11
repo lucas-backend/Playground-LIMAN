@@ -5,7 +5,31 @@ import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import ScienceIcon from "@mui/icons-material/Science";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 
-export const mapelLatihan = [
+import type {
+  LatihanItem,
+  MapelLatihan,
+  MapelLatihanDetail,
+} from "../model/latihanSoal";
+
+/**
+ * Akses data modul Latihan Soal (siswa) — FR-LATIHAN-001.
+ *
+ * Backend belum tersedia (KD-07 `Blocked`); fungsi di sini adalah adapter mock
+ * sementara yang dipindahkan dari `data.tsx` lama, agar komponen
+ * presentasional tidak lagi menyimpan data.
+ *
+ * TODO(latihan F5): saat kontrak `Approved`, ganti isi fungsi dengan
+ * `api.get<...>("/question-banks", { query: { scope: "latihan", subjectId } })`
+ * (API-BNK-001) dan `.../{bankId}/questions` (API-BNK-002) lewat
+ * `@/shared/api/client`. Hapus data mock di bawah saat itu.
+ *
+ * Keterbatasan mock (jujur): daftar latihan (`latihanPerMapel`) sama untuk
+ * setiap mata pelajaran karena data contoh belum dikaitkan per mapel.
+ */
+
+const MOCK_DELAY_MS = 300;
+
+const mapelLatihan: MapelLatihan[] = [
   {
     name: "Matematika",
     topicCount: 12,
@@ -74,7 +98,7 @@ export const mapelLatihan = [
   },
 ];
 
-export const latihanSoalMapel = [
+const latihanPerMapel: LatihanItem[] = [
   {
     name: "Latihan Soal",
     topic: "Bab 1 - Integral",
@@ -108,4 +132,28 @@ export const latihanSoalMapel = [
     location: "Online",
     link: "#",
   },
-]
+];
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** Daftar mata pelajaran latihan (halaman `/latihan-soal`). */
+export async function getMapelLatihanList(): Promise<MapelLatihan[]> {
+  await delay(MOCK_DELAY_MS);
+  return mapelLatihan;
+}
+
+/**
+ * Detail satu mata pelajaran beserta daftar latihannya
+ * (halaman `/latihan-soal/mapel/:mapel_id`). Mengembalikan `null` bila mapel
+ * tidak ditemukan.
+ */
+export async function getMapelLatihanDetail(
+  mapelId: string,
+): Promise<MapelLatihanDetail | null> {
+  await delay(MOCK_DELAY_MS);
+  const mapel = mapelLatihan.find((item) => item.id === mapelId);
+  if (!mapel) return null;
+  return { mapel, latihan: latihanPerMapel };
+}

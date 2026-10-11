@@ -2,28 +2,18 @@ import { useNavigate } from "react-router-dom";
 
 import Header from "@/shared/components/layout/Header";
 import XPadding from "@/shared/components/layout/XPadding";
+import EmptyState from "@/shared/components/state/EmptyState";
+import ErrorState from "@/shared/components/state/ErrorState";
 
-// === DATA DUMMY ===
-const UNIVERSITIES = [
-  "Universitas A",
-  "Universitas B",
-  "Universitas C",
-  "Universitas D",
-  "Universitas E",
-  "Universitas F",
-  "Universitas G",
-  "Universitas H",
-  "Universitas I",
-  "Universitas J",
-  "Universitas J",
-  "Universitas J",
-  "Universitas J",
-  "Universitas J",
-  "Universitas JSSS",
-];
+import PassingGradeSearch from "./components/PassingGradeSearch";
+import UniversityList from "./components/UniversityList";
+import { usePassingGradeList } from "./hooks/usePassingGradeList";
 
+// Daftar universitas (FR-PG-001). Data berasal dari adapter mock
+// (`api/passingGradeApi.ts`), bukan mock inline di komponen.
 export default function PassingGrade() {
   const navigate = useNavigate();
+  const { state, universities, query, setQuery, reload } = usePassingGradeList();
 
   return (
     <div className="h-screen overflow-hidden">
@@ -33,47 +23,53 @@ export default function PassingGrade() {
       <XPadding>
         <div className="h-full flex flex-col max-h-screen">
           {/* SEARCH - TIDAK IKUT SCROLL */}
-          <div className="mt-8 relative mb-6 shrink-0">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </span>
-
-            <input
-              type="text"
+          <div className="mt-8 mb-6 shrink-0">
+            <PassingGradeSearch
               placeholder="Cari Universitas"
-              className="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-full text-base placeholder-gray-400 text-gray-700 outline-none focus:border-gray-300 shadow-sm transition-all"
+              ariaLabel="Cari universitas"
+              value={query}
+              onChange={setQuery}
             />
           </div>
 
           {/* DAFTAR UNIVERSITAS - HANYA BAGIAN INI YANG SCROLL */}
           <div className="flex-1 min-h-0 overflow-y-auto pl-2 pr-2">
-            <div className="flex flex-col gap-6 pb-30">
-              {UNIVERSITIES.map((uni, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col text-left cursor-pointer"
-                  onClick={() => {
-                    navigate("/passing_grade/1");
-                  }}
-                >
-                  <h3 className="text-gray-800 text-base font-medium mb-1 hover:text-blue-600 transition-colors">
-                    {uni}
-                  </h3>
-                </div>
-              ))}
-            </div>
+            {state.status === "loading" ? (
+              <p role="status" className="py-4 text-sm text-gray-500">
+                Memuat passing grade…
+              </p>
+            ) : null}
+
+            {state.status === "error" ? (
+              <ErrorState
+                description="Gagal memuat daftar universitas."
+                action={
+                  <button
+                    type="button"
+                    onClick={reload}
+                    className="font-medium text-brand-500 underline"
+                  >
+                    Coba lagi
+                  </button>
+                }
+              />
+            ) : null}
+
+            {state.status === "ready" ? (
+              universities.length > 0 ? (
+                <UniversityList
+                  universities={universities}
+                  onSelect={(university) =>
+                    navigate(`/passing_grade/${encodeURIComponent(university)}`)
+                  }
+                />
+              ) : (
+                <EmptyState
+                  title="Universitas tidak ditemukan"
+                  description="Coba ubah kata kunci pencarian."
+                />
+              )
+            ) : null}
           </div>
         </div>
       </XPadding>

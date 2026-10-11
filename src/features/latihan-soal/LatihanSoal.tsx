@@ -1,62 +1,66 @@
-import Header from "@/shared/components/layout/Header";
-import XPadding from "@/shared/components/layout/XPadding";
-
-
 import { useNavigate } from "react-router-dom";
 
-import { mapelLatihan } from "./data";
+import Header from "@/shared/components/layout/Header";
+import XPadding from "@/shared/components/layout/XPadding";
+import EmptyState from "@/shared/components/state/EmptyState";
+import ErrorState from "@/shared/components/state/ErrorState";
 
+import MapelCard from "./components/MapelCard";
+import { useLatihanSoal } from "./hooks/useLatihanSoal";
+
+/**
+ * Halaman daftar latihan soal per mata pelajaran (FR-LATIHAN-001).
+ * Data berasal dari hook `useLatihanSoal` (adapter mock sampai backend siap).
+ */
 export default function LatihanSoal() {
   const navigate = useNavigate();
+  const { state, reload } = useLatihanSoal();
+
   return (
     <div>
       <Header title="Latihan Soal" />
       <XPadding className="mt-8">
         <h3 className="text-xl font-semibold">Mata Pelajaran</h3>
 
-        {/* List Card Mata Pelajaran */}
-        <div className="grid grid-cols-2 gap-4 mt-4">
-          {mapelLatihan.map((item, index) => {
-            return (
+        {state.status === "loading" ? (
+          <p className="mt-4 text-sm text-slate-500">Memuat mata pelajaran…</p>
+        ) : null}
+
+        {state.status === "error" ? (
+          <ErrorState
+            title="Gagal memuat mata pelajaran"
+            action={
               <button
-                className="flex flex-col p-4 border border-black/20 shadow rounded-lg justify-start"
-                key={index}
-                onClick={() => {
-                  navigate(`/latihan-soal/mapel/${item.id}`);
-                }}
+                type="button"
+                onClick={reload}
+                className="font-medium text-brand-500 underline"
               >
-                {/* Icon */}
-                <div
-                  className={`${item.bgColor} ${item.color} w-fit p-2 rounded-sm`}
-                >
-                  <item.icon className="w-8! h-8!" />
-                </div>
-
-                {/* Title */}
-                <span className="font-semibold mt-2 flex justify-start">
-                  {item.name}
-                </span>
-
-                {/* Counter */}
-                <div className="flex items-center gap-1.5 text-sm text-black/60">
-                  <span>{item.topicCount} Bab</span>{" "}
-                  <div className="bg-black/60 w-1 h-1 rounded-full"></div>
-                  <span>{item.questionCount} Soal</span>
-                </div>
-
-                {/* Progress Bar */}
-                <div className={`${item.bgColor} w-full h-1 rounded-full mt-2`}>
-                  <div
-                    className={`${item.bgColorFull} h-1 rounded-full`}
-                    style={{
-                      width: `${(item.questionSolved / item.questionCount) * 100}%`,
-                    }}
-                  ></div>
-                </div>
+                Coba lagi
               </button>
-            );
-          })}
-        </div>
+            }
+          />
+        ) : null}
+
+        {state.status === "ready" ? (
+          state.data.length === 0 ? (
+            <EmptyState
+              title="Belum ada latihan soal"
+              description="Daftar mata pelajaran latihan belum tersedia."
+            />
+          ) : (
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              {state.data.map((mapel) => (
+                <MapelCard
+                  key={mapel.id}
+                  mapel={mapel}
+                  onSelect={(mapelId) =>
+                    navigate(`/latihan-soal/mapel/${mapelId}`)
+                  }
+                />
+              ))}
+            </div>
+          )
+        ) : null}
       </XPadding>
     </div>
   );

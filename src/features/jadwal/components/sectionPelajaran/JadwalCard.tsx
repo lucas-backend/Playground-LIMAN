@@ -1,4 +1,4 @@
-import type { JadwalItem } from "../../../../types/jadwal";
+import type { JadwalItem } from "../../model/jadwal";
 
 interface Props {
   item: JadwalItem;

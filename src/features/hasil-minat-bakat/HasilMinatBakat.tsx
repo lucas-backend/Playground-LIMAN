@@ -1,45 +1,39 @@
-import { useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import HistoryIcon from "@mui/icons-material/History";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Header from "@/shared/components/layout/Header";
 import XPadding from "@/shared/components/layout/XPadding";
 
-import HistoryIcon from "@mui/icons-material/History";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useHasilMinatBakat } from "./hooks/useHasilMinatBakat";
 
-import { useNavigate } from "react-router-dom";
+// Id detail jurusan ({id_jurusan} di route detail) tetap "1": halaman detail
+// hanya memiliki satu fixture demo (lihat model/aptitude.mock.ts).
+const DETAIL_JURUSAN_ID = "1";
 
-const tanggal = "11/11/2026";
-
-const minat = "IT & Komputer";
-
-const bakat = "Programming";
-
-const jurusanRekomendasi = [
-  "Teknik Informatika",
-  "Sistem Informasi",
-  "Ilmu Komputer",
-];
-
-const initialTargetJurusanLain = [
-  "Teknik Kimia",
-  "Teknik Industri",
-];
-
+/**
+ * Halaman hasil tes minat bakat siswa (FR-MB-001) + daftar target jurusan lain
+ * (FR-MB-002). UI tipis: data dan aksi lewat `useHasilMinatBakat`.
+ */
 export default function HasilMinatBakat() {
   const navigate = useNavigate();
+  const { quiz_minat_bakat_id } = useParams<{ quiz_minat_bakat_id?: string }>();
+  const {
+    summary,
+    targetJurusanLain,
+    waktuTes,
+    reloadWaktuTes,
+    deleteTargetJurusan,
+  } = useHasilMinatBakat();
 
-  // State target jurusan lain
-  const [targetJurusanLain, setTargetJurusanLain] = useState(
-    initialTargetJurusanLain
-  );
+  const hasilId = quiz_minat_bakat_id ?? "";
 
-  // Handler hapus target jurusan
-  const handleDeleteTargetJurusan = (indexToDelete: number) => {
-    setTargetJurusanLain((prev) =>
-      prev.filter((_, index) => index !== indexToDelete)
-    );
-  };
+  const jurusanDetailPath = () =>
+    `/hasil_minat_bakat/${hasilId}/jurusan/${DETAIL_JURUSAN_ID}`;
+
+  const tambahTargetPath = () =>
+    `/hasil_minat_bakat/${hasilId}/tambah_jurusan`;
 
   return (
     <div>
@@ -49,30 +43,43 @@ export default function HasilMinatBakat() {
         {/* Waktu Tes */}
         <div className="flex gap-2 mt-8 text-black/50">
           <HistoryIcon />
-          <span>Waktu tes: {tanggal}</span>
+          {waktuTes.status === "error" ? (
+            <div
+              role="alert"
+              className="flex items-center gap-2 text-sm text-danger"
+            >
+              <span>Waktu tes gagal dimuat.</span>
+              <button
+                type="button"
+                onClick={reloadWaktuTes}
+                className="font-medium underline"
+              >
+                Coba lagi
+              </button>
+            </div>
+          ) : (
+            <span>
+              Waktu tes:{" "}
+              {waktuTes.status === "ready" ? waktuTes.tanggal : "Memuat…"}
+            </span>
+          )}
         </div>
 
         {/* Minat, Bakat, Rekomendasi */}
         <div className="flex flex-col mt-9">
-          <span className="font-semibold">
-            Minat: {minat}
-          </span>
+          <span className="font-semibold">Minat: {summary.minat}</span>
 
-          <span className="font-semibold">
-            Bakat: {bakat}
-          </span>
+          <span className="font-semibold">Bakat: {summary.bakat}</span>
 
-          <span className="font-semibold">
-            Rekomendasi Jurusan:
-          </span>
+          <span className="font-semibold">Rekomendasi Jurusan:</span>
         </div>
 
         {/* Rekomendasi Jurusan */}
         <div className="flex flex-col gap-2 py-2">
-          {jurusanRekomendasi.map((jurusan, index) => {
+          {summary.rekomendasi.map((jurusan, index) => {
             return (
               <button
-                key={index}
+                key={jurusan}
                 className="
                   py-2
                   px-4
@@ -87,7 +94,7 @@ export default function HasilMinatBakat() {
                   justify-between
                 "
                 onClick={() => {
-                  navigate("/hasil_minat_bakat/1/jurusan/1");
+                  navigate(jurusanDetailPath());
                 }}
               >
                 <span>
@@ -100,16 +107,14 @@ export default function HasilMinatBakat() {
           })}
 
           {/* Target Jurusan Lain */}
-          <div className="font-semibold mt-2">
-            Target Jurusan Lain
-          </div>
+          <div className="font-semibold mt-2">Target Jurusan Lain</div>
 
           {/* List Target Jurusan */}
           <div className="flex flex-col gap-2">
             {targetJurusanLain.map((jurusan, index) => {
               return (
                 <div
-                  key={jurusan}
+                  key={jurusan.id}
                   className="
                     py-2
                     px-4
@@ -129,20 +134,19 @@ export default function HasilMinatBakat() {
                     type="button"
                     className="flex-1 text-left"
                     onClick={() => {
-                      navigate(
-                        "/hasil_minat_bakat/1/jurusan/1"
-                      );
+                      navigate(jurusanDetailPath());
                     }}
                   >
-                    {index + 1}. {jurusan}
+                    {index + 1}. {jurusan.nama}
                   </button>
 
                   {/* Action */}
                   <div className="flex items-center">
                     <button
                       type="button"
+                      aria-label={`Hapus target jurusan ${jurusan.nama}`}
                       onClick={() => {
-                        handleDeleteTargetJurusan(index);
+                        deleteTargetJurusan(jurusan.id);
                       }}
                     >
                       <DeleteIcon />
@@ -167,14 +171,19 @@ export default function HasilMinatBakat() {
                 text-white
               "
               onClick={() => {
-                navigate(
-                  "/hasil_minat_bakat/:id/tambah_jurusan"
-                );
+                navigate(tambahTargetPath());
               }}
             >
               Tambah Target Jurusan Lain
             </button>
           </div>
+
+          {import.meta.env.DEV ? (
+            <p className="mt-8 text-center text-xs text-black/50">
+              Mode pengembangan (mock): hasil minat bakat belum terhubung
+              backend.
+            </p>
+          ) : null}
         </div>
       </XPadding>
     </div>

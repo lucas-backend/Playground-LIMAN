@@ -1,32 +1,32 @@
 import AdSlider from "@/shared/components/ui/AdSlider";
-import SearchBar from "./components/SearchBar";
-import DashboardHeader from "./components/DashboardHeader";
-import StatusAbsen from "./components/StatusAbsen";
-
-import FeatureGrid from "./components/FeatureGrid/FeatureGrid";
-import { gridFeaturesSwitcher } from "./components/FeatureGrid/utils";
-
-// import BottomNav from "./components/BottomNav/BottomNav";
-// import { menuSwitcher } from "./components/BottomNav/utils";
 import XPadding from "@/shared/components/layout/XPadding";
-import { userData } from "./data.mock";
 
-const user = userData;
+import DashboardHeader from "./components/DashboardHeader";
+import FeatureGrid from "./components/FeatureGrid/FeatureGrid";
+import SearchBar from "./components/SearchBar";
+import StatusAbsen from "./components/StatusAbsen";
+import { useDashboard } from "./hooks/useDashboard";
 
-// -- Mock Data --
+// Dashboard per peran (FR-DASH-001): menu diturunkan dari `roles` sesi
+// (`/auth/me`), bukan lagi mock. Status absensi siswa berasal dari adapter
+// mock absensi (lihat `api/dashboardApi.ts`).
 export default function Dashboard() {
+  const { user, features, isStudent, attendance, reloadAttendance } =
+    useDashboard();
+
+  // ProtectedLayout menjamin user terautentikasi; penjaga ini hanya untuk tipe.
+  if (!user) return null;
+
   return (
-    <div className="min-h-dvh bg-blue-500 pt-8 flex flex-col">
-      <DashboardHeader user={user} />
+    <div className="min-h-dvh bg-brand-500 pt-8 flex flex-col">
+      <DashboardHeader name={user.fullName} />
 
       <XPadding className="mt-8">
         <SearchBar />
       </XPadding>
+
       {/* Background White Negative Margin Top for Overlap with Search Button */}
       <div className="bg-white flex-1 w-full max-w-md mx-auto -mt-6 rounded-t-[60px] pt-13 pb-8">
-        {/* Children*/}
-        {/* Di bagian nanti ini bisa disesuaikan seusai dengan role user nya */}
-
         <XPadding>
           {/* AdSlider Container : Untuk Box Styling AdSlider lewat container di Page nya aja */}
           <div className="rounded-xl overflow-hidden">
@@ -34,15 +34,38 @@ export default function Dashboard() {
           </div>
 
           {/* Status Absen Siswa */}
-          {user.role == "siswa" && <StatusAbsen isPresent={user.isPresent} />}
+          {isStudent ? (
+            <div>
+              {attendance.status === "loading" ? (
+                <p className="py-4 text-sm text-slate-500">
+                  Memuat status absensi…
+                </p>
+              ) : null}
+              {attendance.status === "error" ? (
+                <div
+                  role="alert"
+                  className="flex items-center gap-2 py-4 text-sm text-danger"
+                >
+                  <span>Gagal memuat status absensi.</span>
+                  <button
+                    type="button"
+                    onClick={reloadAttendance}
+                    className="font-medium underline"
+                  >
+                    Coba lagi
+                  </button>
+                </div>
+              ) : null}
+              {attendance.status === "ready" ? (
+                <StatusAbsen isPresent={attendance.isPresent} />
+              ) : null}
+            </div>
+          ) : null}
 
           {/* Grid Fitur */}
-          <FeatureGrid features={gridFeaturesSwitcher(user.role)} />
+          <FeatureGrid features={features} />
         </XPadding>
       </div>
-
-      {/* Bottom Nav */}
-      {/* <BottomNav menus={menuSwitcher(user.role)} /> */}
     </div>
   );
 }

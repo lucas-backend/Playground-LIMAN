@@ -1,21 +1,31 @@
-import { useMemo, type ReactNode } from "react";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
 
-import { SessionContext, type Session } from "./session";
+import { SessionContext, type Session, type SessionUser } from "./session";
 
 interface SessionProviderProps {
   children: ReactNode;
 }
 
 export function SessionProvider({ children }: SessionProviderProps) {
+  const [user, setUser] = useState<SessionUser | null>(null);
+
+  const signIn = useCallback((nextUser: SessionUser) => {
+    setUser(nextUser);
+  }, []);
+
+  const signOut = useCallback(() => {
+    // TODO(auth F5): panggil API-AUTH-002 `POST /auth/logout` saat backend ada.
+    setUser(null);
+  }, []);
+
   const value = useMemo<Session>(
     () => ({
-      status: "unavailable",
-      user: null,
-      signOut: () => {
-        // TODO(auth F4): panggil endpoint logout backend saat tersedia.
-      },
+      status: user ? "authenticated" : "unauthenticated",
+      user,
+      signIn,
+      signOut,
     }),
-    [],
+    [user, signIn, signOut],
   );
 
   return (
