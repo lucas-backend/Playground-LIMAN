@@ -1,14 +1,12 @@
 import { useState } from "react";
 
 interface DropdownProps {
-  label: string;
   options: string[];
   placeholder: string;
   onSelect: (value: string) => void;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
-  label,
   options,
   placeholder,
   onSelect,

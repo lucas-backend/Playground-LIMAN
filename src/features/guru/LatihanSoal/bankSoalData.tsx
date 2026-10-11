@@ -43,7 +43,7 @@ const soalContoh: Soal[] = [
   { id: "4", tipe: "bs", teks: "Tentukan benar atau salah", pernyataan: [{ teks: "2 adalah bilangan prima", benar: true }, { teks: "9 adalah bilangan prima", benar: false }] },
 ];
 
-const buatBank = (id: string, jumlah: number): BankSoal[] =>
+const buatBank = (_id: string, jumlah: number): BankSoal[] =>
   Array.from({ length: jumlah }, (_, i) => ({
     id: String(i + 1),
     nama: `Bank Soal ${i + 1}`,

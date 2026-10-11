@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import XPadding from "../../../../components/XPadding";
 import KelasCard from "../../../../components/KelasCard";
-import { REKAP_BASE } from "../shared";
+import { REKAP_BASE } from "../shared.constants";
 
 const jenjangList = [
   { jenjang: "10", iconBg: "bg-green-200", iconColor: "text-green-600" },

@@ -2,7 +2,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../../components/Header";
 import XPadding from "../../../../components/XPadding";
-import { CetakButton, REKAP_BASE, SiswaInfo } from "../shared";
+import { CetakButton, SiswaInfo } from "../shared";
+import { REKAP_BASE } from "../shared.constants";
 
 // H = Hadir, I = Izin, S = Sakit, A = Alpa, D = Dispensasi
 const mapel = [

@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../../../components/Header";
 import XPadding from "../../../components/XPadding";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"; // Ikon WA untuk hubungi siswa/ortu

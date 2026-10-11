@@ -1,0 +1,25 @@
+/*
+ * Design tokens baseline LIMEN (Tailwind v4 `@theme`).
+ * ADR-008 / DEC-14: baseline = tampilan frontend existing.
+ * Warna diambil dari penggunaan aktual di src/ agar tidak mengubah visual.
+ * Sumber kebenaran akhir menunggu aset desain UI/UX resmi.
+ */
+@theme static {
+  /* Brand / primary */
+  --color-brand-500: #1e88e5;
+  --color-brand-600: #1976d2;
+  --color-brand-700: #173c91;
+
+  /* Surface / background */
+  --color-surface: #fffdf6;
+  --color-surface-soft: #ebf3fc;
+  --color-surface-muted: #e8f0fe;
+
+  /* State */
+  --color-success: #2e7d32;
+  --color-success-soft: #c8e6c9;
+  --color-warning: #ae6900;
+  --color-warning-soft: #ffd995;
+  --color-danger: #9e0808;
+  --color-danger-soft: #ff999e;
+}
