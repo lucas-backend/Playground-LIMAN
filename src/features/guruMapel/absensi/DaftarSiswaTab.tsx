@@ -14,7 +14,7 @@ const listSiswaAwal = [
 ];
 
 export default function AbsensiKelasTabDaftarSiswa() {
-  const [daftarSiswa, setDaftarSiswa] = useState(listSiswaAwal);
+  const [daftarSiswa] = useState(listSiswaAwal);
   return (
     <XPadding>
       {/* List Daftar Siswa */}

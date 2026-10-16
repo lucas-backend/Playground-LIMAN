@@ -39,9 +39,10 @@ import BankSoalGuruMapelSoalDetail from "./features/guru/LatihanSoal/BankSoalGur
 import UjianSoalGuru from "./features/guru/Ujian/UjianSoalGuru";
 import TambahSoalUjian from "./features/guru/Ujian/TambahSoalUjian";
 import EditSoalUjianGuru from "./features/guru/Ujian/EditSoalUjianGuru";
+import BankSoalUjianGuru from "./features/guru/Ujian/BankSoalUjianGuru";
 import BankSoalUjianGuruMapel from "./features/guru/Ujian/BankSoalUjianGuruMapel";
-import BankSoalUjianGuruMapelSoal from "./features/guru/Ujian/BankSoalUjianGuruMapel";
-import BankSoalUjianGuruMapelSoalDetail from "./features/guru/Ujian/BankSoalUjianGuruMapel";
+import BankSoalUjianGuruMapelSoal from "./features/guru/Ujian/BankSoalUjianGuruMapelSoal";
+import BankSoalUjianGuruMapelSoalDetail from "./features/guru/Ujian/BankSoalUjianGuruMapelSoalDetail";
 import GuruTugas from "./features/guru/Tugas/GuruTugas";
 import GuruPenilaian from "./features/guru/Penilaian/GuruPenilaian";
 import GuruRemedial from "./features/guru/Remedial/GuruRemedial";
@@ -176,7 +177,7 @@ export default function App() {
           path="/guru/ujian/editSoal/:id_soal/soal/:id_pertanyaan"
           element={<EditSoalUjianGuru />}
         />
-        <Route path="/guru/ujian/bankSoal" element={<BankSoalGuru />} />
+        <Route path="/guru/ujian/bankSoal" element={<BankSoalUjianGuru />} />
         <Route
           path="/guru/ujian/bankSoal/:mapel_id"
           element={<BankSoalUjianGuruMapel />}

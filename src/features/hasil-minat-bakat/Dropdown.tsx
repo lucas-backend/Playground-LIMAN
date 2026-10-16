@@ -8,7 +8,6 @@ interface DropdownProps {
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
-  label,
   options,
   placeholder,
   onSelect,

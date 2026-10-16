@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import SiswaRekapList from "../SiswaRekapList";
-import { REKAP_BASE, namaKelasDariId } from "../shared";
+import { REKAP_BASE, namaKelasDariId } from "../constants";
 
 const rows = [
   { id: 1, nama: "Yaza Nurzahira", persen: 100 },

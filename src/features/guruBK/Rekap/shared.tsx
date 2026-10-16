@@ -1,13 +1,7 @@
 import type { ReactNode } from "react";
 import XPadding from "../../../components/XPadding";
 
-// Sesuaikan dengan path tempat <Rekap /> di-mount, mis. "/guru/rekap"
-export const REKAP_BASE = "/rekap";
-
-export const namaKelasDariId = (id?: string) =>
-  `Kelas ${(id ?? "").replace(/-/g, " ").toUpperCase()}`;
-
-export function Badge({
+function Badge({
   children,
   tone = "green",
   className = "",
@@ -26,7 +20,7 @@ export function Badge({
   );
 }
 
-export function CetakButton() {
+function CetakButton() {
   return (
     <XPadding className="mt-auto py-4">
       <button
@@ -39,7 +33,7 @@ export function CetakButton() {
   );
 }
 
-export function SiswaInfo({
+function SiswaInfo({
   nama,
   kelas,
   extra,
@@ -56,3 +50,5 @@ export function SiswaInfo({
     </div>
   );
 }
+
+export { Badge, CetakButton, SiswaInfo };

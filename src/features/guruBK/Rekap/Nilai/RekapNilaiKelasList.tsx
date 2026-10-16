@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../../components/Header";
 import XPadding from "../../../../components/XPadding";
 import KelasCard from "../../../../components/KelasCard";
-import { REKAP_BASE } from "../shared";
+import { REKAP_BASE } from "../constants";
 
 export default function RekapNilaiKelasList() {
   const { jenjang = "10" } = useParams();

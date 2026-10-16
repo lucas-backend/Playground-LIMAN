@@ -3,7 +3,8 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../../components/Header";
 import XPadding from "../../../../components/XPadding";
-import { Badge, CetakButton, REKAP_BASE } from "../shared";
+import { Badge, CetakButton } from "../shared";
+import { REKAP_BASE } from "../constants";
 
 const mapel = [
   { id: "matematika", nama: "Matematika", nilai: 92 },
