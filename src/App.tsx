@@ -60,10 +60,16 @@ import Rekap from "./features/guruBK/Rekap/Rekap";
 import MinatBakat from "./features/guruBK/MinatBakat/MinatBakat";
 import HalamanNotifikasi from "./features/notifikasi/HalamanNotifikasi";
 import AdminDashboard from "./features/admin/AdminDashboard";
+import UserProvider from "./features/dashboard/UserProvider";
+import DevTools from "./devtools/DevTools";
+
+const DEVTOOLS_ENABLED =
+  import.meta.env.DEV || import.meta.env.VITE_ENABLE_DEVTOOLS === "true";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <UserProvider>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
@@ -236,6 +242,8 @@ export default function App() {
         <Route path="/notifikasi" element={<HalamanNotifikasi/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {DEVTOOLS_ENABLED && <DevTools />}
+      </UserProvider>
     </BrowserRouter>
   );
 }

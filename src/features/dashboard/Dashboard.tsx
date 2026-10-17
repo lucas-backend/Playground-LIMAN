@@ -9,12 +9,12 @@ import { gridFeaturesSwitcher } from "./components/FeatureGrid/utils";
 // import BottomNav from "./components/BottomNav/BottomNav";
 // import { menuSwitcher } from "./components/BottomNav/utils";
 import XPadding from "../../components/XPadding";
-import { userData } from "./data.mock";
-
-const user = userData;
+import { useUser } from "./UserContext";
 
 // -- Mock Data --
 export default function Dashboard() {
+  const user = useUser();
+
   return (
     <div className="min-h-dvh bg-blue-500 pt-8 flex flex-col">
       <DashboardHeader user={user} />
