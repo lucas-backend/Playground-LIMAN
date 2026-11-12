@@ -1,4 +1,9 @@
-export type UserRole = "siswa" | "guruMapel" | "guruBK" | "guruWali" | "admin";
+export type UserRole =
+  | "siswa"
+  | "guru_mapel"
+  | "guru_wali"
+  | "guru_bk"
+  | "admin";
 
 export interface UserData {
   name: string;

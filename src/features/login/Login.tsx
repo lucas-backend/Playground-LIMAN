@@ -22,15 +22,21 @@ export default function Login() {
 
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!email.trim() || !password) {
+    const normalizedEmail = email.trim();
+    if (!normalizedEmail || !password) {
       setErrorMessage("Email dan password wajib diisi.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      setErrorMessage("Masukkan alamat email yang valid.");
       return;
     }
 
     setErrorMessage("");
     setIsSubmitting(true);
     try {
-      await login(email.trim(), password);
+      await login(normalizedEmail, password);
     } catch (error) {
       if (error instanceof ApiError) {
         if (error.code === "INVALID_CREDENTIALS" || error.status === 401) {
@@ -70,6 +76,7 @@ export default function Login() {
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email"
             aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "login-error" : undefined}
             className="text-black bg-white w-full px-4 py-2 focus:outline-none rounded-lg"
           />
           <input
@@ -78,9 +85,11 @@ export default function Login() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             autoComplete="current-password"
+            aria-invalid={Boolean(errorMessage)}
+            aria-describedby={errorMessage ? "login-error" : undefined}
             className="text-black bg-white w-full px-4 py-2 focus:outline-none rounded-lg"
           />
-          {errorMessage && <p role="alert" className="w-full text-center text-sm text-red-100">{errorMessage}</p>}
+          {errorMessage && <p id="login-error" role="alert" className="w-full text-center text-sm text-red-100">{errorMessage}</p>}
           <Button type="submit" disabled={isSubmitting} className="bg-orange-400">
             {isSubmitting ? "MEMPROSES..." : "MASUK"}
           </Button>

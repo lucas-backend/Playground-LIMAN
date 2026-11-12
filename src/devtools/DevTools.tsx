@@ -5,9 +5,9 @@ import type { UserRole } from "../features/dashboard/data.mock";
 
 const ROLES: { id: UserRole; label: string }[] = [
   { id: "siswa", label: "Siswa" },
-  { id: "guruMapel", label: "Guru Mapel" },
-  { id: "guruBK", label: "Guru BK" },
-  { id: "guruWali", label: "Guru Wali" },
+  { id: "guru_mapel", label: "Guru Mapel" },
+  { id: "guru_bk", label: "Guru BK" },
+  { id: "guru_wali", label: "Guru Wali" },
   { id: "admin", label: "Admin" },
 ];
 

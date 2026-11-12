@@ -11,11 +11,11 @@ export function gridFeaturesSwitcher(userRole: string): featureType[] {
   switch (userRole) {
     case "siswa":
       return siswaFeatures;
-    case "guruMapel":
+    case "guru_mapel":
       return guruMapelFeatures;
-    case "guruBK":
+    case "guru_bk":
       return guruBKFeatures;    
-    case "guruWali":
+    case "guru_wali":
       return guruWaliFeatures;
     case "admin":
       return adminFeatures;

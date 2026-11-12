@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { request } from "./client";
 import { ApiError } from "./errors";
+import { API_BASE_URL } from "../../config/env";
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -20,7 +21,7 @@ describe("shared API client", () => {
     });
 
     expect(fetchMock).toHaveBeenCalledWith(
-      "/api/v1/auth/login",
+      `${API_BASE_URL}/auth/login`,
       expect.objectContaining({
         method: "POST",
         credentials: "include",

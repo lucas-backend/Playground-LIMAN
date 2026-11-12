@@ -7,9 +7,9 @@ import { UserContext, type UserContextValue } from "./UserContext";
 
 const ROLE_MAP: Record<RoleCode, UserRole> = {
   siswa: "siswa",
-  guru_mapel: "guruMapel",
-  guru_wali: "guruWali",
-  guru_bk: "guruBK",
+  guru_mapel: "guru_mapel",
+  guru_wali: "guru_wali",
+  guru_bk: "guru_bk",
   admin: "admin",
 };
 
