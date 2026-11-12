@@ -9,6 +9,7 @@ import ManajemenPengguna from "./section/ManajemenPengguna";
 import AkademikDanJadwal from "./section/AkademikDanJadwal";
 import Presensi from "./section/Presensi";
 import NilaiRapor from "./section/NilaiRapor";
+import { useUser } from "../dashboard/UserContext";
 
 type MenuItem = { to: string; label: string; icon: SvgIconComponent };
 
@@ -22,6 +23,12 @@ const menu: MenuItem[] = [
 ];
 
 export default function AdminDashboard() {
+  const { role } = useUser();
+
+  if (role !== "admin") {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return (
     <div className="flex w-full">
       {/* Left Sidebar */}
