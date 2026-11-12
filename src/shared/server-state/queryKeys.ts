@@ -64,6 +64,8 @@ export const queryKeys = {
     all: ["aptitude"] as const,
     list: (filters?: ListFilters) => ["aptitude", "list", normalizedFilters(filters)] as const,
     detail: (id: string | number) => ["aptitude", "detail", id] as const,
+    studentResults: (studentId: string) => ["aptitude", "student-results", studentId] as const,
+    targetMajors: (studentId: string) => ["aptitude", "target-majors", studentId] as const,
   },
   passingGrade: {
     all: ["passing-grade"] as const,

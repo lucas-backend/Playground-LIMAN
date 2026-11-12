@@ -1,45 +1,40 @@
 import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import Header from "../../components/Header";
 import XPadding from "../../components/XPadding";
 
 import HistoryIcon from "@mui/icons-material/History";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-import { useNavigate } from "react-router-dom";
-
-const tanggal = "11/11/2026";
-
-const minat = "IT & Komputer";
-
-const bakat = "Programming";
-
-const jurusanRekomendasi = [
-  "Teknik Informatika",
-  "Sistem Informasi",
-  "Ilmu Komputer",
-];
-
-const initialTargetJurusanLain = [
-  "Teknik Kimia",
-  "Teknik Industri",
-];
+import { useUser } from "../dashboard/UserContext";
+import { createTargetMajor, getAptitudeResults } from "../aptitude/api/aptitudeApi";
+import { queryKeys } from "../../shared/server-state/queryKeys";
+import { ApiErrorState, EmptyState } from "../../shared/components/ApiState";
+import { apiErrorMessage } from "../../shared/components/apiErrorMessage";
 
 export default function HasilMinatBakat() {
-  const navigate = useNavigate();
+  const { authUser } = useUser();
+  const queryClient = useQueryClient();
+  const studentId = authUser?.id;
+  const [major, setMajor] = useState("");
+  const [targetJurusanLain, setTargetJurusanLain] = useState<string[]>([]);
+  const results = useQuery({
+    queryKey: queryKeys.aptitude.studentResults(studentId ?? ""),
+    queryFn: () => getAptitudeResults(studentId!),
+    enabled: Boolean(studentId && authUser?.roles?.includes("siswa")),
+  });
+  const targetMutation = useMutation({
+    mutationFn: (value: string) => createTargetMajor(studentId!, value),
+    onSuccess: async (target) => {
+      setTargetJurusanLain((current) => [...current, target.major]);
+      setMajor("");
+      await queryClient.invalidateQueries({ queryKey: queryKeys.aptitude.targetMajors(studentId!) });
+    },
+  });
 
-  // State target jurusan lain
-  const [targetJurusanLain, setTargetJurusanLain] = useState(
-    initialTargetJurusanLain
-  );
-
-  // Handler hapus target jurusan
-  const handleDeleteTargetJurusan = (indexToDelete: number) => {
-    setTargetJurusanLain((prev) =>
-      prev.filter((_, index) => index !== indexToDelete)
-    );
-  };
+  if (!authUser?.roles?.includes("siswa")) return <p className="p-8">Akses hasil siswa ditolak.</p>;
+  if (results.isLoading) return <p className="p-8">Memuat hasil tes...</p>;
+  if (results.isError) return <div className="p-8"><ApiErrorState error={results.error} onRetry={() => void results.refetch()} /></div>;
+  const aptitudeResults = results.data?.results ?? [];
 
   return (
     <div>
@@ -49,57 +44,22 @@ export default function HasilMinatBakat() {
         {/* Waktu Tes */}
         <div className="flex gap-2 mt-8 text-black/50">
           <HistoryIcon />
-          <span>Waktu tes: {tanggal}</span>
+          <span>Hasil tes</span>
         </div>
 
         {/* Minat, Bakat, Rekomendasi */}
         <div className="flex flex-col mt-9">
-          <span className="font-semibold">
-            Minat: {minat}
-          </span>
-
-          <span className="font-semibold">
-            Bakat: {bakat}
-          </span>
-
-          <span className="font-semibold">
-            Rekomendasi Jurusan:
-          </span>
+          {aptitudeResults.length === 0 && <EmptyState>Belum ada hasil aptitude.</EmptyState>}
+          {aptitudeResults.map((item) => (
+            <div key={item.id} className="rounded-lg border border-gray-200 p-3">
+              <p>{item.result}</p>
+              <small className="text-black/50">{new Date(item.assessedAt).toLocaleString()}</small>
+            </div>
+          ))}
         </div>
 
         {/* Rekomendasi Jurusan */}
         <div className="flex flex-col gap-2 py-2">
-          {jurusanRekomendasi.map((jurusan, index) => {
-            return (
-              <button
-                key={index}
-                className="
-                  py-2
-                  px-4
-                  pr-1.5
-                  pb-2.5
-                  font-semibold
-                  bg-blue-500
-                  text-white
-                  rounded-lg
-                  flex
-                  items-center
-                  justify-between
-                "
-                onClick={() => {
-                  navigate("/hasil_minat_bakat/1/jurusan/1");
-                }}
-              >
-                <span>
-                  {index + 1}. {jurusan}
-                </span>
-
-                <ArrowRightIcon />
-              </button>
-            );
-          })}
-
-          {/* Target Jurusan Lain */}
           <div className="font-semibold mt-2">
             Target Jurusan Lain
           </div>
@@ -125,31 +85,9 @@ export default function HasilMinatBakat() {
                   "
                 >
                   {/* Nama jurusan */}
-                  <button
-                    type="button"
-                    className="flex-1 text-left"
-                    onClick={() => {
-                      navigate(
-                        "/hasil_minat_bakat/1/jurusan/1"
-                      );
-                    }}
-                  >
+                  <span className="flex-1 text-left">
                     {index + 1}. {jurusan}
-                  </button>
-
-                  {/* Action */}
-                  <div className="flex items-center">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        handleDeleteTargetJurusan(index);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </button>
-
-                    <ArrowRightIcon />
-                  </div>
+                  </span>
                 </div>
               );
             })}
@@ -157,7 +95,14 @@ export default function HasilMinatBakat() {
 
           {/* Tambah Target Jurusan */}
           <div className="w-full flex justify-start mt-2">
-            <button
+            <form className="flex gap-2" onSubmit={(event) => {
+              event.preventDefault();
+              if (major.trim()) targetMutation.mutate(major.trim());
+            }}>
+              <input value={major} onChange={(event) => setMajor(event.target.value)} placeholder="Nama jurusan" className="min-w-0 flex-1 rounded-lg border px-3 py-2" />
+              <button
+                type="submit"
+                disabled={targetMutation.isPending || !major.trim()}
               className="
                 bg-green-600
                 px-4
@@ -166,14 +111,11 @@ export default function HasilMinatBakat() {
                 font-semibold
                 text-white
               "
-              onClick={() => {
-                navigate(
-                  "/hasil_minat_bakat/:id/tambah_jurusan"
-                );
-              }}
             >
-              Tambah Target Jurusan Lain
-            </button>
+                Tambah
+              </button>
+            </form>
+            {targetMutation.isError && <p className="mt-2 text-sm text-red-600">{apiErrorMessage(targetMutation.error)}</p>}
           </div>
         </div>
       </XPadding>
