@@ -492,8 +492,8 @@ Definition of Done:
 | Tahap | Status | Bukti/tautan | Blocker |
 | --- | --- | --- | --- |
 | Prompt 0 — Baseline | Belum | — | — |
-| Prompt 1 — Keputusan kontrak | Belum | — | Cookie/origin/absensi/fingerprint |
-| Prompt 2 — API client/types | Belum | — | — |
+| Prompt 1 — Keputusan kontrak | Selesai — gate disetujui | [14-prompt-1-decision-gate.md](./14-prompt-1-decision-gate.md) | Detail origin/allowlist konkret wajib diisi sebelum uji browser |
+| Prompt 2 — API client/types | Terbuka | — | Gunakan keputusan gate; jangan integrasikan absensi/fingerprint |
 | Prompt 3 — Auth/session | Belum | — | — |
 | Prompt 4 — Server-state | Belum | — | — |
 | Prompt 5 — Master/admin | Belum | — | — |
