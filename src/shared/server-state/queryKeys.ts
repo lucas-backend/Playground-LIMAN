@@ -35,6 +35,8 @@ export const queryKeys = {
     all: ["tasks"] as const,
     list: (filters?: ListFilters) => ["tasks", "list", normalizedFilters(filters)] as const,
     detail: (id: string | number) => ["tasks", "detail", id] as const,
+    submissions: (assignmentId: string | number, filters?: ListFilters) =>
+      ["tasks", "submissions", assignmentId, normalizedFilters(filters)] as const,
   },
   assessment: {
     all: ["assessment"] as const,
@@ -45,11 +47,18 @@ export const queryKeys = {
     all: ["reports"] as const,
     list: (filters?: ListFilters) => ["reports", "list", normalizedFilters(filters)] as const,
     detail: (id: string | number) => ["reports", "detail", id] as const,
+    attendance: (filters?: ListFilters) =>
+      ["reports", "attendance", normalizedFilters(filters)] as const,
+    grades: (filters?: ListFilters) =>
+      ["reports", "grades", normalizedFilters(filters)] as const,
+    reportCard: (studentId: string | number, period?: string) =>
+      ["reports", "report-card", studentId, period ?? ""] as const,
   },
   counseling: {
     all: ["counseling"] as const,
     list: (filters?: ListFilters) => ["counseling", "list", normalizedFilters(filters)] as const,
     detail: (id: string | number) => ["counseling", "detail", id] as const,
+    followups: (noteId: string | number) => ["counseling", "followups", noteId] as const,
   },
   aptitude: {
     all: ["aptitude"] as const,

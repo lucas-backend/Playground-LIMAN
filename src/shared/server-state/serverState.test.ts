@@ -13,6 +13,10 @@ describe("server-state conventions", () => {
       .not.toEqual(queryKeys.tasks.list({ status: "open", page: 2 }));
     expect(queryKeys.tasks.list({ status: "open", page: 1 }))
       .toEqual(queryKeys.tasks.list({ page: 1, status: "open" }));
+    expect(queryKeys.tasks.submissions("assignment-1", { page: 1 }))
+      .not.toEqual(queryKeys.tasks.submissions("assignment-2", { page: 1 }));
+    expect(queryKeys.reports.reportCard("student-1", "2026/2027"))
+      .not.toEqual(queryKeys.reports.reportCard("student-2", "2026/2027"));
   });
 
   it("invalidates only the query keys declared by a mutation", async () => {
