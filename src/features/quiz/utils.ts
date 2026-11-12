@@ -17,8 +17,8 @@ export function isAnswerCompleted(answer: UserAnswerValue) {
 }
 
 export function toggleNumberSelection(
-  currentSelection: number[],
-  optionId: number,
+  currentSelection: (string | number)[],
+  optionId: string | number,
 ) {
   if (currentSelection.includes(optionId)) {
     return currentSelection.filter((id) => id !== optionId);

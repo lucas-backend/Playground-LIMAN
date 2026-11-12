@@ -23,7 +23,7 @@ export default function Essay({ question }: Props) {
           className="border border-black/10 p-4 w-full h-44 resize-none overflow-y-auto rounded-xl"
           value={essayAnswer}
           onChange={(event) =>
-            updateUserAnswer(question.id, question.type, event.target.value)
+            updateUserAnswer(question.id, question.question_number, question.type, event.target.value)
           }
         ></textarea>
 

@@ -24,6 +24,12 @@ export const queryKeys = {
     list: (filters?: ListFilters) => ["quiz", "list", normalizedFilters(filters)] as const,
     detail: (id: string | number) => ["quiz", "detail", id] as const,
     result: (id: string | number) => ["quiz", "result", id] as const,
+    attempts: (filters?: ListFilters) => ["quiz", "attempts", normalizedFilters(filters)] as const,
+  },
+  questionBank: {
+    all: ["question-bank"] as const,
+    list: (filters?: ListFilters) => ["question-bank", "list", normalizedFilters(filters)] as const,
+    questions: (bankId: string) => ["question-bank", "questions", bankId] as const,
   },
   tasks: {
     all: ["tasks"] as const,

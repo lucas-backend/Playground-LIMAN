@@ -53,6 +53,7 @@ export default function TrueFalse({ question }: Props) {
 
                       updateUserAnswer(
                         question.id,
+                        question.question_number,
                         question.type,
                         nextSelection,
                       );
@@ -75,6 +76,7 @@ export default function TrueFalse({ question }: Props) {
 
                       updateUserAnswer(
                         question.id,
+                        question.question_number,
                         question.type,
                         nextSelection,
                       );

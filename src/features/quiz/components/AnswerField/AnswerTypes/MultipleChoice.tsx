@@ -12,9 +12,9 @@ export default function MultipleChoice({ question }: Props) {
   const savedAnswer = quizProgress.responses[question.id]?.userAnswer;
   const selectedAnswers =
     Array.isArray(savedAnswer) &&
-    savedAnswer.every((value) => typeof value === "number")
+    savedAnswer.every((value) => typeof value === "number" || typeof value === "string")
       ? savedAnswer
-      : [];
+      : [] as (string | number)[];
 
   return (
     <div className="">
@@ -35,7 +35,7 @@ export default function MultipleChoice({ question }: Props) {
                   option.id,
                 );
 
-                updateUserAnswer(question.id, question.type, nextSelection);
+                updateUserAnswer(question.id, question.question_number, question.type, nextSelection);
               }}
             />
             <label htmlFor={`${option.id}`}>{option.label}</label>

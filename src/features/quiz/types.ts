@@ -1,21 +1,20 @@
 interface BaseQuestion {
-  id: number;
+  id: string | number;
   question_number: number;
   question: string;
 }
 
 interface Option {
-  id: number;
+  id: string | number;
   label: string;
 }
 
 export interface MultipleChoiceQuestion extends BaseQuestion {
   type: "pilihan_ganda" | "pilihan_ganda_kompleks";
   options: Option[];
-  answer: number | number[];
+  answer?: number | number[];
 }
 
-// Range Value Question memang ga ada jawaban benarnya
 export interface RangeValueQuestion extends BaseQuestion {
   type: "rentang_nilai";
   min_val: number;
@@ -24,11 +23,10 @@ export interface RangeValueQuestion extends BaseQuestion {
   max_val_label?: string;
 }
 
-// Interface untuk 'satu' baris pertanyaan benar atau salah pada tabel
 interface TrueFalseQuestionItem {
   id: number;
   question: string;
-  answer: boolean;
+  answer?: boolean;
 }
 
 export interface TrueFalseQuestion extends BaseQuestion {
@@ -48,7 +46,7 @@ export type QuizQuestion =
   | EssayQuestion;
 
 export interface QuizData {
-  id: number;
+  id: string | number;
   title: string;
   description?: string;
   startTime: string | null;
@@ -56,27 +54,26 @@ export interface QuizData {
   questions: QuizQuestion[];
 }
 
-// Tipe untuk menampung jawaban yang sedang dikerjakan
 export type UserAnswerValue =
   | number
   | number[]
+  | (string | number)[]
   | boolean
   | boolean[]
   | string
   | null;
 
 export interface QuestionResponse {
-  questionId: number; // Relasi ke BaseQuestion.id
-  type: QuizQuestion["type"]; // Mengikuti tipe soal agar mudah memprosesnya
+  questionId: string | number;
+  type: QuizQuestion["type"];
   userAnswer: UserAnswerValue;
-  isCompleted: boolean; // Flag untuk validasi apakah soal sudah dijawab
-  updatedAt: string; // Timestamp kapan jawaban disimpan
+  isCompleted: boolean;
+  updatedAt: string;
 }
 
 export interface QuizProgress {
-  quizId: number; // Relasi ke QuizData.id
+  quizId: string | number;
   startTime: string;
   lastSaved: string;
-  responses: Record<number, QuestionResponse>; // Key adalah questionId untuk akses O(1)
+  responses: Record<string, QuestionResponse>;
 }
-

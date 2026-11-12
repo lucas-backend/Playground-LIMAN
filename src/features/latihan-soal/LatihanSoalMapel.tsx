@@ -1,57 +1,44 @@
-import { useParams } from "react-router-dom";
-
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import XPadding from "../../components/XPadding";
 import { mapelLatihan } from "./data";
-import { latihanSoalMapel } from "./data";
-import QuizItemCard from "../../components/QuizItemCard";
+import { useUser } from "../dashboard/UserContext";
+import { listQuizzes } from "../quiz/api/quizApi";
+import { queryKeys } from "../../shared/server-state/queryKeys";
 
 export default function LatihanSoalMapel() {
   const { id } = useParams();
-  const mapel = mapelLatihan.filter((item) => item.id == id)[0];
+  const navigate = useNavigate();
+  const { authUser } = useUser();
+  const mapel = mapelLatihan.find((item) => String(item.id) === id);
+  const quizzes = useQuery({
+    queryKey: queryKeys.quiz.list(),
+    queryFn: () => listQuizzes({ pageSize: 100 }),
+    enabled: Boolean(authUser?.roles?.includes("siswa")),
+  });
 
-  return (
-    <div className="">
-      <Header title="Latihan Soal" />
-      <XPadding className="pt-8">
-        {/* kotak title mapel berwarna */}
-        <div
-          className={`flex items-center justify-start p-4 rounded-lg gap-4 ${mapel.bgColorFull}`}
-        >
-          {/* Icon */}
-          <div
-            className={`rounded-lg bg-white/50 text-white p-2 flex items-center justify-center`}
-          >
-            {<mapel.icon className="w-8! h-8!" />}
+  if (!mapel) return <p className="p-8">Mata pelajaran tidak ditemukan.</p>;
+  return <div>
+    <Header title="Latihan Soal" />
+    <XPadding className="pt-8">
+      <div className={`flex items-center gap-4 rounded-lg p-4 ${mapel.bgColorFull}`}>
+        <div className="rounded-lg bg-white/50 p-2 text-white"><mapel.icon className="h-8! w-8!" /></div>
+        <div className="text-white"><h3 className="text-xl font-semibold">{mapel.name}</h3><span>{mapel.topicCount} Bab</span></div>
+      </div>
+      <p className="mt-5 text-xs text-black/60">Daftar ini memakai endpoint quiz aktif; pemetaan mapel ke subject UUID belum disimpulkan dari route UI.</p>
+      {quizzes.isLoading && <p className="mt-4">Memuat quiz...</p>}
+      {quizzes.error && <p className="mt-4">Quiz tidak dapat dimuat.</p>}
+      <div className="mt-4 space-y-3">
+        {quizzes.data?.items.map((quiz) => (
+          <div key={quiz.id} className="rounded-lg border border-black/10 p-4">
+            <p className="font-semibold">{quiz.title}</p>
+            <p className="text-sm text-black/60">{quiz.description ?? "Quiz latihan"}</p>
+            <button type="button" onClick={() => navigate(`/quiz/${quiz.id}`)}
+              className="mt-3 rounded-lg bg-blue-500 px-4 py-2 text-sm text-white">Mulai / lanjutkan</button>
           </div>
-
-          {/* Title & Number Info */}
-          <div className="text-white flex flex-col justify-center pb-1">
-            <h3 className="font-semibold text-xl">{mapel.name}</h3>
-            <span>
-              {mapel.topicCount} Bab - {mapel.questionCount} Soal
-            </span>
-          </div>
-        </div>
-
-        {/* 2 tombol */}
-        <div className="grid grid-cols-2 gap-4 pt-4">
-          <button className="cursor-pointer pt-0.5 pb-1 flex items-center justify-center border border-black/15 rounded-full bg-blue-400/25">
-            Latihan Soal
-          </button>
-          <button className="cursor-pointer pt-0.5 pb-1 flex items-center justify-center border border-black/15 rounded-full hover:bg-blue-400/25">
-            Riwayat
-          </button>
-        </div>
-
-        {/* List latihan soal */}
-        <div className="flex flex-col gap-4 mt-4">
-          {/* <QuizItemCard item={item} key={index} /> */}
-          {latihanSoalMapel.map((item, index) => {
-            return <QuizItemCard item={item} key={index} />;
-          })}
-        </div>
-      </XPadding>
-    </div>
-  );
+        ))}
+      </div>
+    </XPadding>
+  </div>;
 }

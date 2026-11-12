@@ -76,7 +76,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/quiz/:quiz_id/*" element={<Quiz />} />
+        <Route path="/quiz/:quizId/*" element={<Quiz />} />
         <Route path="/jadwal-siswa/*" element={<Jadwal />} />
         <Route path="/latihan-soal" element={<LatihanSoal />} />
         <Route

@@ -17,7 +17,7 @@ const getLetter = (id: number | string) => {
 export default function SingleChoice({ question }: Props) {
   const { quizProgress, updateUserAnswer } = useQuizContext();
   const savedAnswer = quizProgress.responses[question.id]?.userAnswer;
-  const selectedAnswer = typeof savedAnswer === "number" ? savedAnswer : null;
+  const selectedAnswer = typeof savedAnswer === "number" || typeof savedAnswer === "string" ? savedAnswer : null;
 
   return (
     <div className="mt-4 flex flex-col gap-2">
@@ -36,7 +36,7 @@ export default function SingleChoice({ question }: Props) {
               }
               checked={selectedAnswer === option.id}
               onChange={() =>
-                updateUserAnswer(question.id, question.type, option.id)
+                updateUserAnswer(question.id, question.question_number, question.type, option.id)
               }
             />
             <label htmlFor={`${option.id}`}>{option.label}</label>

@@ -29,7 +29,7 @@ export default function RangeValue({ question }: Props) {
               name={`${question.id}`}
               id={`${question.id}-${num}`}
               checked={selectedAnswer === num}
-              onChange={() => updateUserAnswer(question.id, question.type, num)}
+              onChange={() => updateUserAnswer(question.id, question.question_number, question.type, num)}
             />
             <label htmlFor={`${question.id}-${num}`}>{num}</label>
           </div>
