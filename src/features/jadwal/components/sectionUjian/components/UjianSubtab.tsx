@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import QuizItemCard from "../../../../../components/QuizItemCard";
+import ScheduleList from "../../ScheduleList";
 
 const ujianSubTab = [
   { name: "Ulangan Harian", link: "/jadwal-siswa/ujian/ulangan-harian" },
@@ -7,118 +7,9 @@ const ujianSubTab = [
   { name: "PAS", link: "/jadwal-siswa/ujian/pas" },
 ];
 
-const listJadwal = [
-  {
-    name: "Ulangan Harian",
-    topic: "Bahasa Inggris",
-    status: 1,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "Ulangan Harian",
-    topic: "Matematika",
-    status: 2,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "Ulangan Harian",
-    topic: "Biologi",
-    status: 3,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PTS",
-    topic: "Biologi",
-    status: 1,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PTS",
-    topic: "Matematika",
-    status: 2,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PTS",
-    topic: "Bahasa Inggris",
-    status: 3,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PAS",
-    topic: "Bahasa Inggris",
-    status: 1,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PAS",
-    topic: "Kimia",
-    status: 2,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-  {
-    name: "PAS",
-    topic: "Matematika",
-    status: 3,
-    startTime: "07:00",
-    endTime: "08:30",
-    duration: "90",
-    date: "10 Januari 2026",
-    location: "Online",
-    link: "#",
-  },
-];
-
 export default function UjianSubtab() {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const lastPath = location.pathname.split("/").pop();
-  let itemTarget: string;
-
-  if (lastPath == "ulangan-harian") itemTarget = "Ulangan Harian";
-  if (lastPath == "pts") itemTarget = "PTS";
-  if (lastPath == "pas") itemTarget = "PAS";
 
   return (
     <>
@@ -137,14 +28,7 @@ export default function UjianSubtab() {
         })}
       </div>
 
-      {/* List jadwal */}
-      <div className="flex flex-col gap-4 mt-4">
-        {listJadwal
-          .filter((item) => item.name == itemTarget)
-          .map((item, index) => (
-            <QuizItemCard item={item} key={index} />
-          ))}
-      </div>
+      <ScheduleList kind="ujian" />
     </>
   );
 }

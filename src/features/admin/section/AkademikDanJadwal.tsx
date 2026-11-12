@@ -13,6 +13,7 @@ import {
 } from "../../academic/api/academicApi";
 import { ApiErrorState, EmptyState } from "../../../shared/components/ApiState";
 import { apiErrorMessage } from "../../../shared/components/apiErrorMessage";
+import ScheduleAdminPanel from "../../jadwal/components/ScheduleAdminPanel";
 
 function ListCard({ title, children, onSubmit, submitLabel }: {
   title: string;
@@ -138,6 +139,7 @@ export default function AkademikDanJadwal() {
         {studentId && <form onSubmit={saveStudent} className="mt-4 flex flex-wrap gap-2 border-t pt-4"><input value={studentNis} onChange={(e) => setStudentNis(e.target.value)} placeholder="NIS" className="rounded border p-2 text-sm" /><button className="rounded bg-blue-500 px-3 py-2 text-sm font-semibold text-white">Simpan profil siswa</button></form>}
         <div className="mt-4 flex items-center justify-between text-sm"><span>Halaman {page}</span><div className="flex gap-2"><button disabled={page === 1} onClick={() => setPage((value) => value - 1)} className="rounded border px-3 py-1 disabled:opacity-40">Sebelumnya</button><button disabled={page * 20 >= totalStudents} onClick={() => setPage((value) => value + 1)} className="rounded border px-3 py-1 disabled:opacity-40">Berikutnya</button></div></div>
       </section>
+      <ScheduleAdminPanel />
     </div>
   );
 }
