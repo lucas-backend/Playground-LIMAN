@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../features/dashboard/UserContext";
-import { STORAGE_KEY, type UserRole } from "../features/dashboard/data.mock";
+import type { UserRole } from "../features/dashboard/data.mock";
 
 const ROLES: { id: UserRole; label: string }[] = [
   { id: "siswa", label: "Siswa" },
@@ -159,20 +159,16 @@ export default function DevTools() {
             <SectionTitle>Reset</SectionTitle>
             <button
               type="button"
-              onClick={() => {
-                localStorage.removeItem(STORAGE_KEY);
-                resetUser();
-              }}
+              onClick={resetUser}
               className="w-full rounded-lg border border-red-900 bg-red-950/50 px-3 py-2 text-xs font-medium text-red-400 hover:bg-red-950"
             >
-              Reset mock user & storage
+              Reset session UX
             </button>
           </section>
 
           <p className="pb-4 text-[10px] leading-relaxed text-zinc-600">
-            Data role & status absen disimpan di localStorage key{" "}
-            <code>{STORAGE_KEY}</code>. Untuk memunculkan DevTools di build
-            production (Vercel), set env var{" "}
+            Role dan status absen hanya state UX di memori. Untuk memunculkan
+            DevTools di build production (Vercel), set env var{" "}
             <code>VITE_ENABLE_DEVTOOLS=true</code>.
           </p>
         </div>

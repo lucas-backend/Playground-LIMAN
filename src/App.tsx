@@ -62,6 +62,7 @@ import HalamanNotifikasi from "./features/notifikasi/HalamanNotifikasi";
 import AdminDashboard from "./features/admin/AdminDashboard";
 import UserProvider from "./features/dashboard/UserProvider";
 import DevTools from "./devtools/DevTools";
+import ProtectedRoute from "./features/auth/ProtectedRoute";
 
 const DEVTOOLS_ENABLED =
   import.meta.env.DEV || import.meta.env.VITE_ENABLE_DEVTOOLS === "true";
@@ -73,6 +74,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
+        <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/quiz/:quiz_id/*" element={<Quiz />} />
         <Route path="/jadwal-siswa/*" element={<Jadwal />} />
@@ -241,6 +243,7 @@ export default function App() {
 
         <Route path="/notifikasi" element={<HalamanNotifikasi/>}/>
         <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
       {DEVTOOLS_ENABLED && <DevTools />}
       </UserProvider>

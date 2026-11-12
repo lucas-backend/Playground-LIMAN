@@ -70,6 +70,28 @@ describe("shared API client", () => {
     });
   });
 
+  it("preserves authentication and authorization error codes", async () => {
+    for (const response of [
+      { status: 401, code: "UNAUTHENTICATED" },
+      { status: 403, code: "FORBIDDEN" },
+      { status: 403, code: "CSRF_INVALID" },
+    ]) {
+      vi.stubGlobal(
+        "fetch",
+        vi.fn().mockResolvedValue(
+          new Response(JSON.stringify({ code: response.code, message: response.code }), {
+            status: response.status,
+          }),
+        ),
+      );
+
+      await expect(request("/private")).rejects.toMatchObject({
+        status: response.status,
+        code: response.code,
+      });
+    }
+  });
+
   it("exposes network and abort errors explicitly", async () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("offline")));
     await expect(request("/auth/me")).rejects.toMatchObject({
